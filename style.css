@@ -1132,3 +1132,104 @@ footer {
     transform: scale(1.1);
     
   }
+
+/* --- Responsive Adjustments for Mobile Devices --- */
+@media (max-width: 768px) {
+    /* Adjust navigation bar */
+    .main-nav ul {
+        display: none; /* Hide desktop menu */
+        flex-direction: column;
+        background-color: var(--nav-bg);
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        box-shadow: var(--shadow-light);
+        z-index: 1000;
+    }
+    .main-nav ul.show-mobile-menu {
+        display: flex; /* Show menu when toggled */
+    }
+    .menu-toggle {
+        display: block; /* Show hamburger menu */
+    }
+
+    /* Adjust hero section */
+    .hero-content-wrapper {
+        flex-direction: column; /* Stack text and image */
+        text-align: center;
+    }
+    .hero-text {
+        padding-right: 0;
+    }
+    .hero-image img {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Adjust mission section */
+    .mission-container {
+        flex-direction: column; /* Stack image and text */
+        text-align: center;
+    }
+    .mission-image {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .mission-text {
+        text-align: center;
+    }
+
+    /* Adjust values section */
+    .values-header {
+        flex-direction: column; /* Stack text and image */
+        text-align: center;
+    }
+    .values-decorative-image {
+        margin: 0 auto;
+    }
+
+    /* Adjust snack cards */
+    .top-list-container {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    /* Adjust tips section */
+    .tips-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    /* Adjust packages section */
+    .packages-slider {
+        padding: 10px 20px; /* Reduce padding */
+    }
+    .packages-slider .package-card {
+        width: 100%; /* Full width */
+    }
+
+    /* Adjust footer */
+    .footer-content {
+        grid-template-columns: 1fr; /* Single column layout */
+        text-align: center;
+    }
+    .footer-column ul {
+        text-align: center;
+    }
+    .footer-social-links {
+        justify-content: center;
+    }
+}
+
+/* --- Responsive Adjustments for Tablets --- */
+@media (max-width: 992px) {
+    .hero-content-wrapper {
+        gap: 20px;
+    }
+    .hero-image img {
+        width: 350px;
+        height: 350px;
+    }
+    .values-container, .tips-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
