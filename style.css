@@ -1079,6 +1079,13 @@ footer {
     }
 }
 
+/* Hide the floating download button on larger screens */
+@media (min-width: 769px) {
+    .floating-download-button {
+        display: none;
+    }
+}
+
 .fixed-corner-image {
     position: fixed; /* Keep it fixed relative to the viewport */
     width: 50px;     /* Adjust container size */
