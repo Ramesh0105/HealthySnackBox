@@ -1135,7 +1135,7 @@ footer {
 
 /* --- Responsive Adjustments for Mobile Devices --- */
 @media (max-width: 768px) {
-    /* Adjust navigation bar */
+    /* Navigation Bar */
     .main-nav ul {
         display: none; /* Hide desktop menu */
         flex-direction: column;
@@ -1154,7 +1154,7 @@ footer {
         display: block; /* Show hamburger menu */
     }
 
-    /* Adjust hero section */
+    /* Hero Section */
     .hero-content-wrapper {
         flex-direction: column; /* Stack text and image */
         text-align: center;
@@ -1163,24 +1163,24 @@ footer {
         padding-right: 0;
     }
     .hero-image img {
-        width: 300px;
-        height: 300px;
+        width: 90%; /* Scale image to fit screen */
+        height: auto; /* Maintain aspect ratio */
     }
 
-    /* Adjust mission section */
+    /* Mission Section */
     .mission-container {
         flex-direction: column; /* Stack image and text */
         text-align: center;
     }
     .mission-image {
-        max-width: 80%;
+        max-width: 90%;
         margin: 0 auto;
     }
     .mission-text {
         text-align: center;
     }
 
-    /* Adjust values section */
+    /* Values Section */
     .values-header {
         flex-direction: column; /* Stack text and image */
         text-align: center;
@@ -1189,17 +1189,17 @@ footer {
         margin: 0 auto;
     }
 
-    /* Adjust snack cards */
+    /* Snack Cards */
     .top-list-container {
         grid-template-columns: 1fr; /* Single column layout */
     }
 
-    /* Adjust tips section */
+    /* Tips Section */
     .tips-grid {
         grid-template-columns: 1fr; /* Single column layout */
     }
 
-    /* Adjust packages section */
+    /* Packages Section */
     .packages-slider {
         padding: 10px 20px; /* Reduce padding */
     }
@@ -1207,7 +1207,7 @@ footer {
         width: 100%; /* Full width */
     }
 
-    /* Adjust footer */
+    /* Footer */
     .footer-content {
         grid-template-columns: 1fr; /* Single column layout */
         text-align: center;
@@ -1227,7 +1227,7 @@ footer {
     }
     .hero-image img {
         width: 350px;
-        height: 350px;
+        height: auto;
     }
     .values-container, .tips-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
