@@ -1,0 +1,1134 @@
+/* --- General Styles & Variables --- */
+:root {
+    --bg-color: #fdf8f0; /* Light beige page background */
+    --header-bg-gradient: linear-gradient(135deg, #fdf8f0 0%, #fbf0dc 100%); /* Header Section Background */
+    --header-shape-bg: #ECE7DB; /* Background for the curved shape */
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --text-light: #666;
+    --heading-color: #4a3f35; /* Darker brown for headings */
+    --accent-color: #f5a623; /* Orange accent */
+    --secondary-accent: #a7c4bc; /* Teal from HB */
+    --dark-accent: #5E8B7E; /* Darker Teal */
+    --nav-bg: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --font-body: 'Poppins', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --transition: all 0.3s ease-in-out;
+    --border-radius: 15px;
+    --nav-height: 70px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height); /* Offset for fixed nav */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color); /* Main page background */
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Underline for H2 */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin: 0 auto 40px;
+    max-width: 700px;
+    font-size: 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+/* --- Fixed Navigation --- */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-light);
+    z-index: 1000; /* High z-index */
+    transition: background-color 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--heading-color);
+}
+.logo1 {
+    height: 71px;       /* adjust size as needed */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    padding-left: 50px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 5px 0;
+    position: relative;
+    transition: var(--transition);
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--heading-color);
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 80%;
+}
+
+.menu-toggle { display: none; } /* Hide hamburger on desktop */
+
+/* style.css */
+
+.download-button {
+    display: inline-block; /* Allows padding and prevents taking full width */
+    background-color: #4CAF50; /* A standard green color */
+    color: rgb(6, 6, 6);            /* White text color */
+    font-weight: bold;       /* Bold text */
+    padding: 10px 20px;      /* Add some space inside the box (top/bottom, left/right) */
+    text-decoration: none;   /* Remove the default link underline */
+    border-radius: 8px;      /* Optional: Adds slightly rounded corners */
+    border: none;            /* Remove any default border */
+    cursor: pointer;         /* Show a pointer hand on hover */
+    text-align: center;      /* Center text if display:block was used */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  /* Optional: Add a subtle hover effect */
+  .download-button:hover {
+    background-color: #45a049; /* A slightly darker green on hover */
+  }
+  
+  /* Optional: Style for when the button is being clicked */
+  .download-button:active {
+    background-color: #3e8e41; /* An even darker green when active */
+  }
+
+/* --- Header Section (#home) - Target for Effects --- */
+header#home {
+    padding-top: calc(var(--nav-height) + 60px); /* Space below nav */
+    padding-bottom: 60px; /* Space below content */
+    padding-left: 20px;  /* Side padding */
+    padding-right: 20px; /* Side padding */
+    background: var(--header-bg-gradient); /* Background for this section */
+    min-height: 80vh; /* Ensure sufficient height */
+    position: relative; /* ESSENTIAL for absolute positioning of children/pseudo */
+    overflow: hidden; /* ESSENTIAL to clip shape/items */
+    display: flex; /* Use flex to center content wrapper */
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Wrapper for Header Content (Text & Image) --- */
+.hero-content-wrapper {
+    max-width: 1100px; /* Maybe slightly smaller max-width */
+    width: 100%;
+    display: flex;
+    align-items: center; /* Vertically align */
+    gap: 30px; /* Adjust gap */
+    position: relative;
+    z-index: 3;
+}
+
+/* --- Main Text & Image within Wrapper --- */
+.hero-text { /* --- Main Text & Image within Wrapper --- */
+    flex-basis: 55%; /* Take up slightly more than half */
+    padding-right: 20px; /* Add some space before image area */
+    position: relative; /* Needed for z-index relative to deco items */
+    z-index: 3; /* Ensure text is above deco */
+    } 
+.hero-image 
+{
+    flex-basis: 45%; /* Take up slightly less than half */
+    text-align: center; /* Center image within its area */
+    position: relative; /* Needed for z-index */
+    z-index: 3; /* Ensure image is above deco */
+}
+
+.hero-image img {
+    max-width: 100%; /* Allow shrinking */
+    width: 400px; /* Max width for the image itself */
+    height: 450px; /* Set a height to help define oval shape */
+    object-fit: cover; /* Cover the area without distortion */
+    /* border-radius: 50%; */ /* REMOVE simple circle */
+    border-radius: 50% / 40%; /* Create an oval shape (adjust percentages) */
+    /* Example alternative: border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; */
+    box-shadow: var(--shadow-medium);
+    display: inline-block; /* Prevent extra space below image */
+}
+.hero-buttons { margin-top: 30px; display: flex; gap: 15px; }
+.btn {
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    text-align: center;
+}
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(245, 166, 35, 0.3);
+}
+.btn-primary:hover {
+    background-color: #e09015;
+    transform: translateY(-2px);
+}
+.btn-secondary {
+    background-color: #eee;
+    color: var(--text-light);
+}
+.btn-secondary:hover {
+    background-color: #ddd;
+    color: var(--text-color);
+}
+
+/* --- Curved Background Shape WITHIN Header --- */
+header#home::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0; /* Positioned relative to header#home */
+    bottom: 0;
+    width: 60%; /* Adjust width of the shape */
+    background-color: var(--header-shape-bg); /* Shape background color */
+    border-top-left-radius: 40% 80%; /* Adjust curve */
+    border-bottom-left-radius: 40% 80%; /* Adjust curve */
+    z-index: 1; /* Behind content wrapper and deco items */
+    opacity: 0.7; /* Adjust transparency */
+}
+
+/* --- Falling Decorative Items WITHIN Header --- */
+@keyframes moveAround {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(20px, -30px) rotate(15deg);
+    }
+    50% {
+        transform: translate(-20px, 30px) rotate(-15deg);
+    }
+    75% {
+        transform: translate(30px, -20px) rotate(10deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+.deco-item {
+    position: absolute;
+    z-index: 2;
+    color: var(--accent-color);
+    opacity: 0.4;
+    font-size: 2rem;
+    animation: moveAround 8s infinite ease-in-out;
+}
+
+/* --- Individual Item Positioning (RELATIVE TO HEADER#home - Focus on LEFT side) --- */
+.item-1 { /* Pepper */
+    top: 20%;
+    left: 15%; /* Position from left */
+    transform: rotate(-15deg);
+    font-size: 2rem;
+    color: #e74c3c;
+}
+.item-2 { /* Tomato */
+    bottom: 35%;
+    left: 28%; /* Towards the middle-left */
+    font-size: 2rem;
+}
+.item-3 { /* Leaf */
+    top: 45%;
+    left: 40%;
+     transform: rotate(25deg);
+     font-size: 2rem;
+     color: #2ecc71;
+     opacity: 0.5;
+}
+.item-4 { /* Herb */
+    bottom: 60%;
+    left: 65%;
+    font-size: 2rem;
+    color: #16a085;
+}
+.item-5 { /* Notch */
+    top: 85%;
+    left: 65%;
+    transform: rotate(45deg);
+    opacity: 0.3;
+    color: var(--secondary-accent);
+    font-size: 2rem;
+
+}
+.item-6 { /* Chili */
+    top: 50%;
+    left: 90%;
+     transform: rotate(-10deg);
+     font-size: 2rem;
+}
+
+/* --- Main Content Area --- */
+main {
+    /* Optional padding */
+    /* padding-top: 40px; */
+}
+
+/* --- General Section Styling --- */
+section {
+    padding: 60px 20px;
+    text-align: center; /* Center section headings */
+}
+
+
+
+/* --- Mission Section --- */
+section#mission {
+    padding: 80px 20px; /* Adjust padding as needed */
+    overflow: hidden; /* Prevent AOS overflow issues */
+}
+
+.mission-container {
+    max-width: 1200px; /* Max width of the content */
+    margin: 0 auto; /* Center the container */
+    display: flex; /* Arrange image and text side-by-side */
+    align-items: center; /* Vertically align items */
+    gap: 60px; /* Space between image and text */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens if needed */
+}
+
+.mission-image {
+    flex: 1; /* Allow image container to take space */
+    min-width: 250px; /* Minimum width before wrapping */
+    max-width: 35%; /* Limit image width */
+}
+
+.mission-image img {
+    max-width: 100%;
+    border-radius: 150px 150px 12px 12px; /* Match the pill shape of values-decorative-image */
+    box-shadow: var(--shadow-medium);
+    height: 250px; /* Match the height of values-decorative-image */
+    object-fit: cover;
+}
+
+.mission-text {
+    flex: 1; /* Allow text container to take space */
+    min-width: 300px; /* Minimum width */
+    text-align: left; /* Align text content to the left */
+}
+
+/* Override general centered styles for h2/subtitle within mission */
+.mission-text h2 {
+    text-align: left;
+    display: block; /* Override inline-block if present */
+}
+.mission-text h2::after {
+    left: 0; /* Align underline to the left */
+    transform: translateX(0); /* Remove centering transform */
+    width: 70px; /* Adjust underline width */
+}
+.mission-text .subtitle {
+    text-align: left;
+    margin-left: 0; /* Remove auto margins */
+    margin-right: 0;
+    max-width: none; /* Remove max-width limit */
+}
+
+/* Style quote block within mission text */
+.mission-text .quote-block {
+    margin-top: 30px; /* Space above quote */
+    margin-left: 0; /* Align quote left */
+    margin-right: 0;
+    max-width: 100%; /* Fit within text container */
+    /* Keep existing quote styles (border, bg, padding, etc.) */
+}
+
+
+/* --- Responsive Adjustments for Mission Section --- */
+    @media (max-width: 768px) {
+        .mission-container {
+            /* ... existing styles ... */
+        }
+        .mission-image {
+            max-width: 80%;
+            order: -1;
+            margin: 0 auto;
+        }
+        .mission-image img {
+            /* Adjust height for mobile */
+            height: 250px;
+            /* Keep the same pill shape radius */
+            border-radius: 150px 150px 12px 12px;
+        }
+    }
+    .mission-text {
+        text-align: center; /* Center text content on mobile */
+    }
+    .mission-text h2,
+    .mission-text .subtitle {
+        text-align: center; /* Center heading/subtitle */
+    }
+    .mission-text h2::after {
+        left: 50%; /* Re-center underline */
+        transform: translateX(-50%);
+    }
+    .mission-text .quote-block {
+        margin-left: auto; /* Center quote block */
+        margin-right: auto;
+        max-width: 90%; /* Limit quote width */
+        text-align: left; /* Keep quote text left-aligned */
+    }
+
+    .quote-block {
+        /* ... other quote block styles ... */
+        font-style: italic; /* Or normal */
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 800px; /* Limit width */
+        padding: 25px 30px;
+        border-left: 5px solid var(--heading-color); /* Darker border */
+        background: var(--card-bg);
+        border-radius: 0 8px 8px 0;
+        box-shadow: var(--shadow-light);
+        text-align: left;
+        position: relative; /* Keep for pseudo-elements if used */
+    }
+    .standalone-quote {
+        margin-top: 60px; /* Adjust vertical spacing */
+        margin-bottom: 60px; /* Adjust vertical spacing */
+        margin-left: auto;  /* Explicitly center horizontally */
+        margin-right: auto; /* Explicitly center horizontally */
+        text-align: center; /* Center the text *inside* the block */
+        border-left: none; /* Maybe remove border for centered text? */
+        border-top: 4px solid var(--accent-color); /* Add top border instead? */
+        border-bottom: 4px solid var(--accent-color);/* Add bottom border instead? */
+        border-radius: var(--border-radius); /* Apply normal radius */
+        padding: 30px 40px; /* Adjust padding */
+    }
+    
+    .quote-block p { margin-bottom: 0; line-height: 1.7; }
+
+
+/* =================================== */
+/* == Our Values Section Styles == */
+/* =================================== */
+
+section#values {
+    /* --- Background & Full Width --- */
+    /* Choose a color slightly darker than --bg-color (#fdf8f0) */
+    background-color: #f9f3e8; /* Example: Slightly darker beige */
+    /* Or maybe use the tips section color: #f7eedd; */
+    width: 100%; /* Ensure it spans full width */
+
+    /* --- Keep Increased Padding --- */
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 20px;  /* Standard horizontal padding */
+    padding-right: 20px;
+
+    /* --- Positioning Context for Crown --- */
+    position: relative;
+    overflow: hidden; /* Clip crown if needed */
+
+    /* --- REMOVE Box Styling --- */
+    /* max-width: none; */ /* No max-width on the section itself */
+    /* margin: 0; */       /* No auto margins */
+    /* border-radius: 0; */ /* No rounded corners for the section */
+    /* box-shadow: none; */ /* No shadow on the section */
+}
+
+/* --- Center the Content WITHIN the Full-Width Section --- */
+.values-section-content {
+    max-width: 1200px; /* Max width for the actual content */
+    margin: 0 auto;    /* Center the content block */
+    width: 100%;       /* Use available width up to max-width */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Header within Values (Image & Text) --- */
+.values-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.values-text-content {
+    flex: 1;
+    min-width: 280px;
+    text-align: left;
+}
+
+.values-text-content h2 {
+    text-align: left;
+    display: block;
+}
+.values-text-content h2::after { /* Left-aligned underline */
+    left: 0;
+    transform: translateX(0);
+    width: 70px;
+}
+.values-text-content .subtitle {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 500px;
+}
+
+.values-decorative-image {
+    flex-basis: 300px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.values-decorative-image img {
+    max-width: 100%;
+    border-radius: 150px 150px 12px 12px; /* Pill shape top */
+    box-shadow: var(--shadow-medium);
+    height: 250px;
+    object-fit: cover;
+}
+
+/* --- Value Cards Container (Grid) --- */
+.values-container {
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    justify-content: center;
+}
+
+/* --- Value Cards Styling (Keep 3D Shadow Effect) --- */
+/* --- Individual Value Cards --- */
+.value-card {
+    background-color: var(--card-bg); /* Keep card background */
+    border-radius: var(--border-radius);
+    /* Increase top padding to make space for the icon */
+    padding: 55px 30px 35px 30px; /* e.g., increased from 35px */
+    text-align: center;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    position: relative;
+    z-index: 1;
+    border: 1px solid #eee;
+    overflow : visible; /* ADD THIS to allow icon overflow */
+}
+
+.value-card:hover {
+    transform: translate(-6px, -6px);
+    box-shadow:
+       7px 7px 0px 0px rgba(50, 50, 50, 0.3),
+       12px 12px 15px 0px rgba(0, 0, 0, 0.2),
+       18px 18px 25px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Value Card Icon Wrapper --- */
+/* Icon Wrapper Styling - Modified for Pop-out Effect */
+.value-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ffc371 100%);
+    display: flex;         /* These ensure the emoji inside is centered */
+    align-items: center;   /* Vertically centers the emoji */
+    justify-content: center;/* Horizontally centers the emoji */
+    box-shadow: 0 4px 10px rgba(245, 166, 35, 0.3);
+    transition: transform 0.3s ease-out;
+    font-size: 2.8rem;     /* Controls the size of the emoji */
+    line-height: 1;        /* Helps with emoji vertical alignment */
+
+    /* Positioning for Pop-out */
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    border: 4px solid var(--card-bg); /* Border matching card bg */
+}
+
+.value-card:hover {
+    transform: translate(-6px, -8px); /* Pop up slightly more */
+    /* Keep existing shadow changes */
+}
+
+.value-card:hover .value-icon-wrapper {
+    transform: translateX(-50%) scale(1.05); /* Only scale, keep centered */
+    /* transform: translateX(-50%) scale(1.1) rotate(5deg); */ /* Original hover */
+}
+
+/* --- Star Snacks (Top List) Section --- */
+#products {
+     /* background-color: #fff; Optional background */
+}
+.top-list-container {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+.food-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    padding: 20px;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: visible; /* Allow image to pop out */
+}
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+.highlight-card {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    z-index: 5;
+}
+.highlight-card:hover {
+    transform: scale(1.03) translateY(-10px);
+}
+.food-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: -50px auto 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 5px solid white;
+    position: relative;
+    z-index: 2;
+}
+.food-card h3 { font-size: 1.1rem; }
+.food-card p { font-size: 0.85rem; min-height: 30px; margin-bottom: 10px;}
+.card-extra-info { margin-bottom: 10px; min-height: 20px; }
+.rating {
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+.price {
+    font-weight: 600;
+    color: var(--heading-color);
+    font-size: 1.1rem;
+}
+.add-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-button:hover { background-color: #e09015; }
+
+
+/* --- Tips Section --- */
+.tips-section {
+    background-color: #f7eedd; /* Consistent background */
+    padding: 60px 20px;
+}
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+}
+.tip-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+    text-align: left;
+}
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+.tip-card h3 {
+    color: var(--heading-color);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+}
+.tip-card h3 i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+.tip-card p { font-size: 0.9rem; }
+
+/* --- Packages Section Container --- */
+#packages {
+    padding-top: 80px;
+    padding-bottom: 100px; /* Space for arrows/content */
+    background-color: #fff; /* Section background */
+    position: relative; /* Needed for absolute arrows */
+    overflow: hidden; /* Prevent potential overflow */
+}
+
+/* --- Swiper Container --- */
+.packages-slider {
+    max-width: 1080px;
+    margin: 40px auto 0;
+    padding: 10px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Swiper Wrapper (Holds all slides in a row) --- */
+.packages-slider .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+/* --- Swiper Slide (Individual slide container) --- */
+.packages-slider .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-shrink: 0;
+    width: auto;
+}
+
+/* --- Package Card Styling (Inside the Slide) --- */
+.packages-slider .package-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    padding: 30px 25px;
+    text-align: center;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    border-top: 4px solid var(--accent-color);
+    width: 85%; 
+    max-width: 350px; 
+
+    /* Flexbox for internal vertical alignment & button positioning */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is spaced evenly */
+    height: 100%; /* Fill the height of the swiper-slide */
+}
+
+.packages-slider .package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.packages-slider .package-card button.package-button {
+    margin-top: auto; /* Push the button to the bottom */
+}
+
+/* --- Reduced font size for package features --- */
+.package-card .package-features {
+    font-size: 0.9rem; /* Reduced font size */
+    line-height: 1.5; /* Adjusted line height for better spacing */
+}
+
+/* --- Swiper Arrow Styles --- */
+.package-arrow-next,
+.package-arrow-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.package-arrow-next:hover,
+.package-arrow-prev:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.package-arrow-prev {
+    left: 10px; /* Move inward by 10px */
+}
+
+.package-arrow-next {
+    right: 10px; /* Move inward by 10px */
+}
+
+/* Ensure you have Font Awesome linked for these ::after rules */
+.package-arrow-next::after,
+.package-arrow-prev::after {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1rem;
+}
+.package-arrow-prev::after { content: '\f053'; } /* Left */
+.package-arrow-next::after { content: '\f054'; } /* Right */
+
+/* --- Footer --- */
+footer {
+    background: #333; /* Dark background */
+    color: #ccc; /* Light text */
+    padding: 50px 20px 20px;
+    margin-top: 40px;
+}
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+.footer-column h3 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+.footer-column p { color: #aaa; font-size: 0.9rem;}
+.footer-column ul { list-style: none; }
+.footer-column ul li { margin-bottom: 10px; }
+.footer-column ul li a {
+    color: #aaa;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+.footer-column ul li a:hover {
+    color: var(--accent-color);
+    padding-left: 5px;
+}
+.footer-column .contact-column ul li { display: flex; align-items: center; gap: 10px; }
+.footer-column .contact-column i { color: var(--accent-color); width: 15px; }
+
+.social-links { display: flex; gap: 12px; margin-top: 15px; }
+.social-links a {
+    color: #333;
+    background: #ccc;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+.social-links a:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-3px);
+}
+.copyright {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+}
+.copyright p { margin-bottom: 0;}
+
+/* --- QR Code Popup Styles --- */
+.qr-popup-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.qr-code-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.qr-code-item img {
+    border: 2px solid var(--secondary-accent);
+    border-radius: 8px;
+    padding: 5px;
+    background: white;
+}
+.qr-code-item span {
+    font-weight: 500;
+    color: var(--heading-color);
+    font-size: 0.9rem;
+}
+.qr-code-item i { margin-right: 5px;}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 2rem; }
+    .hero-content-wrapper { gap: 20px; }
+    .hero-image img { max-width: 350px; }
+    header#home::after { width: 70%; } /* Adjust shape width */
+    .deco-item { font-size: 1.2rem; }
+    .values-container, .tips-grid, .packages-container { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+    :root { --nav-height: 60px; }
+
+    .menu-toggle {
+        display: block;
+        color: var(--heading-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+    }
+     .main-nav ul { display: none; } /* Hide links */
+     /* Add styles for showing menu when active via JS */
+     .nav-container { justify-content: flex-start; }
+     .logo { margin-right: auto;}
+
+    header#home { 
+        padding-top: calc(var(--nav-height) + 40px); /* Adjust top padding */
+        padding-bottom: 40px; /* Adjust bottom padding */
+        padding-left: 20px;
+        padding-right: 20px;
+        background: var(--header-bg-gradient); /* Keep background */
+        /* min-height: 80vh; */ /* REMOVE or reduce drastically, e.g., min-height: auto; */
+        position: relative; /* Keep for absolute positioning */
+        overflow: hidden; /* Keep for clipping deco items */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+}
+
+.fixed-corner-image {
+    position: fixed; /* Keep it fixed relative to the viewport */
+    width: 50px;     /* Adjust container size */
+    height: 50px;    /* Adjust container size */
+    bottom: 30px;    /* Distance from bottom */
+    right: 30px;     /* Distance from right */
+    /* Optional: Add background/border to container if needed */
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    /* border-radius: 50%; */ /* Make container circular if desired */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    z-index: 99;      /* Below WhatsApp button if both exist, otherwise 100 */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+    overflow: hidden; /* Hide parts of image if container is rounded */
+    border-radius: 12px; /* Example: Slightly rounded corners for the container */
+}
+
+.fixed-corner-image img {
+    display: block; /* Remove extra space below image */
+    width: 100%;    /* Make image fill container width */
+    height: 100%;   /* Make image fill container height */
+    object-fit: cover; /* Cover container without distortion */
+    /* Optional: Apply rounding to the image itself */
+    /* border-radius: 50%; */ /* Make image circular within container */
+     border-radius: 12px; /* Match container rounding */
+}
+
+.fixed-corner-image:hover {
+    transform: scale(1.08); /* Slightly enlarge on hover */
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3); /* Enhance shadow */
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .fixed-corner-image {
+        width: 40px; 
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+        border-radius: 8px;
+    }
+     .fixed-corner-image img {
+         border-radius: 8px;
+     }
+}
+.footer-social-links {
+    display: flex;
+    gap: 15px; /* INCREASE this value (e.g., from 12px) */
+    margin-top: 15px;
+    justify-content: flex-start; /* Or center if needed */
+}
+
+.footer-social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #555;  /* Default background */
+    color: #fff;       /* Default icon color */
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Added color */
+}
+
+.footer-social-links a:hover {
+    /* Change background color on hover */
+    background: var(--accent-color); /* Example: Use your orange accent */
+    /* Or use a specific color: background: #e09015; */
+
+    /* Change icon color on hover */
+    background: #e09015; /* Example: Make icon white */
+    /* Or use a specific color: color: #ffffff; */
+    color: #000;
+
+    transform: translateY(-3px); /* Keep the pop effect */
+}
+
+.footer-social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    gap: 25px;
+    padding: 20px 0;
+  }
+  
+  .footer-social-icons a img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+  }
+  
+  .footer-social-icons a:hover img {
+    transform: scale(1.1);
+    
+  }
