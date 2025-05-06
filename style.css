@@ -853,6 +853,29 @@ section#values {
     line-height: 1.5; /* Adjusted line height for better spacing */
 }
 
+/* Style for package features with tick marks */
+.package-features {
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.package-features li {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically align tick mark and text */
+    gap: 8px; /* Add spacing between tick mark and text */
+    margin-bottom: 10px; /* Add spacing between items */
+    font-size: 0.9rem; /* Adjust font size */
+    color: var(--text-color); /* Use the default text color */
+}
+
+.package-features .tick {
+    color: var(--accent-color); /* Use the accent color for the tick mark */
+    font-size: 1rem; /* Adjust tick mark size */
+    line-height: 1; /* Align tick mark vertically */
+    flex-shrink: 0; /* Prevent tick mark from shrinking */
+}
+
 /* --- Swiper Arrow Styles --- */
 .package-arrow-next,
 .package-arrow-prev {
