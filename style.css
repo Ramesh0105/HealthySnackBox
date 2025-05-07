@@ -861,18 +861,19 @@ section#values {
 }
 
 .package-features li {
-    display: flex; /* Use flexbox for alignment */
+    display: inline-flex; /* Use inline-flex to keep tick marks and text inline */
     align-items: center; /* Vertically align tick mark and text */
-    gap: 8px; /* Add spacing between tick mark and text */
-    margin-bottom: 10px; /* Add spacing between items */
-    font-size: 0.9rem; /* Adjust font size */
+    gap: 5px; /* Minimal spacing between tick mark and text */
+    margin-bottom: 4px; /* Reduce spacing between items */
+    font-size: 0.95rem; /* Adjust font size for better readability */
     color: var(--text-color); /* Use the default text color */
+    line-height: 1.2; /* Reduce line height for compact spacing */
 }
 
-.package-features .tick {
-    color: var(--accent-color); /* Use the accent color for the tick mark */
+.package-features li::before {
+    content: "✓"; /* Add the tick mark */
     font-size: 1rem; /* Adjust tick mark size */
-    line-height: 1; /* Align tick mark vertically */
+    color: var(--accent-color); /* Use the accent color for the tick mark */
     flex-shrink: 0; /* Prevent tick mark from shrinking */
 }
 
