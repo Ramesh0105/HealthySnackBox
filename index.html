@@ -10,23 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Swiper CSS removed as it's not used for packages anymore -->
 
     <!-- Link to Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <link rel="icon" href="Images/logo.jpg" type="image/jpeg"> <!-- Adjusted path -->
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="main-nav">
         <div class="nav-container">
             <!-- Logo -->
-            <img src="logo.jpg" class="logo1" alt="Healthy Bites Logo">
+            <img src="Images/logo.jpg" class="logo1" alt="Healthy Bites Logo"> <!-- Adjusted path -->
             <!-- Navigation Links -->
             <ul>
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#mission">About Us</a></li>
                 <li><a href="#products">Services</a></li>
+                <li><a href="#packages">Packages</a></li> <!-- Added Packages to Nav -->
                 <li><a href="#footer">Contact Us</a></li>
             </ul>
             <!-- Download App Button -->
@@ -74,7 +75,6 @@
     <main>
         <!-- Mission Section -->
         <section id="mission">
-            <!-- Mission Content -->
             <div class="mission-container">
                 <div class="mission-image" data-aos="fade-right">
                     <img src="https://images6.alphacoders.com/804/804136.jpg" alt="Healthy Bites Mission - Community Eating">
@@ -91,7 +91,6 @@
 
         <!-- Values Section -->
         <section id="values">
-            <!-- Values Header -->
             <div class="values-section-content">
                 <div class="values-header">
                     <div class="values-text-content">
@@ -103,37 +102,24 @@
                         <img src="https://wallpapercave.com/wp/wp6557500.jpg" alt="Fresh Ingredients">
                     </div>
                 </div>
-                <!-- Values Cards -->
                 <div class="values-container">
-                    <!-- Card 1 -->
                     <div class="value-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="value-icon-wrapper">
-                            <i class="fas fa-award"></i>
-                        </div>
+                        <div class="value-icon-wrapper"><i class="fas fa-award"></i></div>
                         <h3>Quality</h3>
                         <p>Only the finest natural ingredients make the cut. Highest-quality ingredients and sustainable practices.</p>
                     </div>
-                    <!-- Card 2 -->
                     <div class="value-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="value-icon-wrapper">
-                            <i class="fas fa-clock"></i>
-                        </div>
+                        <div class="value-icon-wrapper"><i class="fas fa-clock"></i></div>
                         <h3>Convenience</h3>
                         <p>Ready-to-eat snacks to fit your busy schedule. Easy and convenient for your on-the-go lifestyle.</p>
                     </div>
-                    <!-- Card 3 -->
                     <div class="value-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="value-icon-wrapper">
-                            <i class="fas fa-leaf"></i>
-                        </div>
+                        <div class="value-icon-wrapper"><i class="fas fa-leaf"></i></div>
                         <h3>Sustainability</h3>
                         <p>Eco-friendly packaging and ethical sourcing. Reducing environmental impact and promoting sustainability.</p>
                     </div>
-                    <!-- Card 4 -->
                     <div class="value-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="value-icon-wrapper">
-                            <i class="fas fa-heart"></i>
-                        </div>
+                        <div class="value-icon-wrapper"><i class="fas fa-heart"></i></div>
                         <h3>Customer Satisfaction</h3>
                         <p>We prioritize your health and happiness always. Excellent service and quality products are our promise.</p>
                     </div>
@@ -141,50 +127,31 @@
             </div>
         </section>
 
-        <!-- Star Snacks Section -->
+        <!-- Star Snacks Section (Services) -->
         <section id="products">
             <h2>Our Star Snacks</h2>
             <p class="subtitle">Carefully curated combinations for optimal nutrition and taste</p>
             <div class="top-list-container">
-                <!-- Snack Cards -->
-                <!-- Card 1 -->
                 <div class="food-card" data-aos="zoom-in">
                     <img src="https://www.cookwithmanali.com/wp-content/uploads/2019/12/Mixed-Nuts-Chikki-500x500.jpg" alt="Nuts Chikki Combo">
                     <h3>Nuts Chikki Combo</h3>
                     <p>Nuts Chikki, Raagi Biscuit, Seasonal Fruits</p>
-                    <div class="card-extra-info">
-                        <span class="rating">⭐ 4.8 (120 reviews)</span>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">₹500</span>
-                        <button class="add-button">i</button>
-                    </div>
+                    <div class="card-extra-info"><span class="rating">⭐ 4.8 (120 reviews)</span></div>
+                    <div class="card-footer"><span class="price">₹500</span><button class="add-button">i</button></div>
                 </div>
-                <!-- Card 2 -->
                 <div class="food-card highlight-card" data-aos="zoom-in" data-aos-delay="100">
                     <img src="https://img-global.cpcdn.com/recipes/edc47cf1f6688884/680x482cq70/mixed-nuts-and-seeds-chikki-recipe-main-photo.jpg" alt="Pumpkin Delight">
                     <h3>Pumpkin Delight</h3>
                     <p>Pumpkin Chikki, Badam Biscuit, Seasonal Fruits</p>
-                    <div class="card-extra-info">
-                        <span class="rating">⭐ 4.7 (95 reviews)</span>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">₹570</span>
-                        <button class="add-button">i</button>
-                    </div>
+                    <div class="card-extra-info"><span class="rating">⭐ 4.7 (95 reviews)</span></div>
+                    <div class="card-footer"><span class="price">₹570</span><button class="add-button">i</button></div>
                 </div>
-                <!-- Card 3 -->
                 <div class="food-card" data-aos="zoom-in" data-aos-delay="200">
                     <img src="https://vegehomecooking.com/wp-content/uploads/2022/01/PeanutChikkiFeaturedImage.jpg" alt="Peanut Power Pack">
                     <h3>Peanut Power Pack</h3>
                     <p>Peanut Chikki, Cashew Biscuit, Seasonal Fruits</p>
-                    <div class="card-extra-info">
-                        <span class="rating">⭐ 4.9 (150 reviews)</span>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">₹600</span>
-                        <button class="add-button">i</button>
-                    </div>
+                    <div class="card-extra-info"><span class="rating">⭐ 4.9 (150 reviews)</span></div>
+                    <div class="card-footer"><span class="price">₹600</span><button class="add-button">i</button></div>
                 </div>
             </div>
         </section>
@@ -216,100 +183,58 @@
         <!-- Packages Section -->
         <section id="packages">
             <h2>Choose Your Perfect Plan</h2>
-            <p class="subtitle">Flexible options to fit your healthy lifestyle</p>
+            <p class="subtitle">Flexible options to fit your healthy lifestyle. Select a base plan, then customize your duration.</p>
 
-            <!-- Swiper Container -->
-            <div class="swiper packages-slider">
-                <div class="swiper-wrapper">
-                    <!-- Slide 1: Weekly Box -->
-                    <div class="swiper-slide">
-                        <div class="package-card" data-aos="flip-left" data-aos-delay="100">
-                            <h3>Weekly Box</h3>
-                            <p>Perfect for trying out our healthy snacks</p>
-                            <div class="price-plan">₹1500/week</div>
-                            <br>
-                            <ul class="package-features">
-                                <li>5 premium snack packs</li>
-                                <li>Free delivery</li>
-                                <li>Nutrition information</li>
-                            </ul>
-                            <br>
-                            <button class="btn btn-primary package-button" onclick="showSubscriptionQRCode('Weekly')">Subscribe Now</button>
-                        </div>
-                    </div>
-                    <!-- Slide 2: Monthly Box -->
-                    <div class="swiper-slide">
-                        <div class="package-card" data-aos="flip-left" data-aos-delay="200">
-                            <h3>Monthly Box</h3>
-                            <p>Best value for regular healthy snacking</p>
-                            <div class="price-plan">₹4000/1 month</div>
-                            <br>
-                            <ul class="package-features">
-                                <li>20 exclusive snacks</li>
-                                <li>Detailed nutrition guide</li>
-                                <li>Free delivery + surprise gift</li>
-                            </ul>
-                            <br>
-                            <button class="btn btn-primary package-button" onclick="showSubscriptionQRCode('Monthly')">Subscribe Now</button>
-                        </div>
-                    </div>
-                    <!-- Slide 3: Quarterly Crate -->
-                    <div class="swiper-slide">
-                        <div class="package-card" data-aos="flip-left" data-aos-delay="300">
-                            <h3>Quarterly Crate</h3>
-                            <p>A balanced commitment to wellness</p>
-                            <div class="price-plan">₹11000/3 months</div>
-                            <br>
-                            <ul class="package-features">
-                                <li>60 curated snacks</li>
-                                <li>Detailed nutrition guide</li>
-                                <li>Free delivery + surprise gift</li>
-                                <li>5% off next renewal</li>
-                            </ul>
-                            <br>
-                            <button class="btn btn-primary package-button" onclick="showSubscriptionQRCode('Quarterly')">Subscribe Now</button>
-                        </div>
-                    </div>
-                    <!-- Slide 4: Semi-Annual Supply -->
-                    <div class="swiper-slide">
-                        <div class="package-card" data-aos="flip-left" data-aos-delay="400">
-                            <h3>Semi-Annual Supply</h3>
-                            <p>Serious savings for dedicated snackers</p>
-                            <div class="price-plan">₹21000/6 months</div>
-                            <br>
-                            <ul class="package-features">
-                                <li>120 diverse snacks</li>
-                                <li>Premium nutrition guide</li>
-                                <li>Free delivery + 2 surprise gifts</li>
-                                <li>10% off next renewal</li>
-                            </ul>
-                            <br>
-                            <button class="btn btn-primary package-button" onclick="showSubscriptionQRCode('Semi-Annual')">Subscribe Now</button>
-                        </div>
-                    </div>
-                    <!-- Slide 5: Annual Membership -->
-                    <div class="swiper-slide">
-                        <div class="package-card" data-aos="flip-left" data-aos-delay="500">
-                            <h3>Annual Membership</h3>
-                            <p>Ultimate value & health commitment</p>
-                            <div class="price-plan">₹40000/year</div>
-                            <br>
-                            <ul class="package-features">
-                                <li>260 snacks (5/week)</li>
-                                <li>Premium guide & Priority support</li>
-                                <li>Free delivery + Seasonal gifts</li>
-                                <li>Free nutrition consultation</li>
-                                <li>15% off next renewal</li>
-                            </ul>
-                            <br>
-                            <button class="btn btn-primary package-button" onclick="showSubscriptionQRCode('Annual')">Subscribe Now</button>
-                        </div>
-                    </div>
+            <div class="main-plans-container">
+                <!-- Basic Plan Card -->
+                <div class="main-plan-card" data-aos="fade-up">
+                    <h3>Basic Plan</h3>
+                    <p class="plan-description">
+                        Great for starters, get essential healthy snacks.
+                    </p>
+                    <ul class="plan-key-features">
+                        <li><i class="fas fa-check-circle"></i> Curated weekly essentials</li>
+                        <li><i class="fas fa-check-circle"></i> Focus on core nutrients</li>
+                        <li><i class="fas fa-check-circle"></i> Perfect entry to healthy snacking</li>
+                    </ul>
+                    <button class="btn-open-modal" data-plan-id="basic" aria-label="Select duration for Basic Plan">
+                        <i class="fas fa-plus"></i> Customize & View Pricing
+                    </button>
                 </div>
 
-                <!-- Navigation Arrows -->
-                <div class="swiper-button-next package-arrow-next"></div>
-                <div class="swiper-button-prev package-arrow-prev"></div>
+                <!-- Pro Plan Card -->
+                <div class="main-plan-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Pro Plan</h3>
+                    <p class="plan-description">
+                        More variety and quantity for the dedicated snacker.
+                    </p>
+                    <ul class="plan-key-features">
+                        <li><i class="fas fa-check-circle"></i> Expanded snack selection</li>
+                        <li><i class="fas fa-check-circle"></i> Includes energy-boosting options</li>
+                        <li><i class="fas fa-check-circle"></i> Balanced for active lifestyles</li>
+                        <li><i class="fas fa-check-circle"></i> Surprise healthy treats</li>
+                    </ul>
+                    <button class="btn-open-modal" data-plan-id="pro" aria-label="Select duration for Pro Plan">
+                        <i class="fas fa-plus"></i> Customize & View Pricing
+                    </button>
+                </div>
+
+                <!-- Ultra Pro Plan Card -->
+                <div class="main-plan-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Ultra Pro Plan</h3>
+                    <p class="plan-description">
+                        The ultimate healthy snacking experience with maximum benefits.
+                    </p>
+                    <ul class="plan-key-features">
+                        <li><i class="fas fa-check-circle"></i> Premium & gourmet snacks</li>
+                        <li><i class="fas fa-check-circle"></i> Includes organic & superfoods</li>
+                        <li><i class="fas fa-check-circle"></i> Personalized snack options</li>
+                        <li><i class="fas fa-check-circle"></i> Exclusive wellness perks</li>
+                    </ul>
+                    <button class="btn-open-modal" data-plan-id="ultraPro" aria-label="Select duration for Ultra Pro Plan">
+                        <i class="fas fa-plus"></i> Customize & View Pricing
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -322,7 +247,6 @@
     <!-- Footer -->
     <footer id="footer">
         <div class="footer-content">
-            <!-- About Column -->
             <div class="footer-column about-column">
                 <h3>Healthy Bites</h3>
                 <p>Nourishing Your Body, One Snack at a Time with quality ingredients and sustainable practices.</p>
@@ -333,7 +257,6 @@
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <!-- Quick Links Column -->
             <div class="footer-column links-column">
                 <h3>Quick Links</h3>
                 <ul>
@@ -344,7 +267,6 @@
                     <li><a href="#" onclick="showContactPopup(event)">Download App</a></li>
                 </ul>
             </div>
-            <!-- Contact Column -->
             <div class="footer-column contact-column">
                 <h3>Contact Us</h3>
                 <ul>
@@ -364,10 +286,35 @@
         <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 3rem; box-shadow: none; filter: none;"></i>
     </a>
 
+    <!-- Duration Selection Modal -->
+    <div id="durationModal" class="modal-overlay" style="display: none;"> <!-- Hidden by default -->
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            <h3 id="modalPlanTitle">Select Duration for [Plan Name]</h3>
+            <form id="durationForm">
+                <div id="durationOptionsContainer" class="duration-options">
+                    <!-- Duration radio buttons will be injected here by JS -->
+                </div>
+
+                <h4>Items Included:</h4>
+                <div id="modalItemContainer" class="modal-item-display-area">
+                    <!-- Item images and names will be injected here by JS -->
+                </div>
+
+                <div class="modal-cost-section">
+                    <strong>Total Cost: ₹<span id="modalTotalCost">0</span></strong>
+                </div>
+
+                <button type="button" id="modalConfirmButton" class="btn btn-primary">Confirm & Proceed</button>
+            </form>
+        </div>
+    </div>
+
+
     <!-- External Scripts -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Swiper JS removed -->
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
 </body>

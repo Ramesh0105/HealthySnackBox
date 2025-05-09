@@ -1,41 +1,17 @@
-// --- SweetAlert2: Show Subscription QR Code ---
-function showSubscriptionQRCode(plan) {
-    const subscriptionLink = `https://healthybites.com/subscribe?plan=${plan.toLowerCase()}`;
-    const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(subscriptionLink)}`;
-
-    Swal.fire({
-        title: `Subscribe to ${plan} Plan!`,
-        text: 'Scan the code or click below to get started.',
-        imageUrl: qrCodeApiUrl,
-        imageWidth: 180,
-        imageHeight: 180,
-        confirmButtonText: 'Proceed to Subscribe',
-        confirmButtonColor: '#f5a623',
-        showCancelButton: true,
-        cancelButtonText: 'Maybe Later',
-        footer: `<a href="${subscriptionLink}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color);">Go to Subscription Page</a>`
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.open(subscriptionLink, '_blank');
-            console.log(`User wants to subscribe to ${plan}`);
-        }
-    });
-}
-
-// --- SweetAlert2: Show App Download QR Codes ---
+// --- SweetAlert2: Show App Download QR Codes (Used by new modal & nav button) ---
 function showContactPopup(event) {
     if (event) event.preventDefault();
 
-    const androidAppLink = "https://play.google.com/store/apps/details?id=com.example.healthybites";
-    const iosAppLink = "https://apps.apple.com/app/healthy-bites/id1234567890";
+    const androidAppLink = "https://play.google.com/store/apps/details?id=com.example.healthybites"; // Replace with your actual link
+    const iosAppLink = "https://apps.apple.com/app/healthy-bites/id1234567890"; // Replace with your actual link
 
     const androidQRUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(androidAppLink)}`;
     const iosQRUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(iosAppLink)}`;
 
     Swal.fire({
-        title: 'Get Our App / Contact',
+        title: 'Get Our App',
         html: `
-            <p style="margin-bottom: 20px; color: var(--text-light); font-size: 0.95rem;">Scan below to download our mobile app or view contact details in the footer.</p>
+            <p style="margin-bottom: 20px; color: var(--text-light); font-size: 0.95rem;">Scan below to download our mobile app.</p>
             <div class="qr-popup-content">
                 <div class="qr-code-item">
                     <img src="${androidQRUrl}" alt="Android App QR Code">
@@ -46,16 +22,16 @@ function showContactPopup(event) {
                     <span><i class="fab fa-apple"></i> App Store</span>
                 </div>
             </div>
-            <p style="margin-top: 20px;"><a href="#footer" onclick="Swal.close();" style="color: var(--accent-color);">View Contact Details</a></p>
+            <p style="margin-top: 20px;"><a href="#footer" onclick="Swal.close(); setTimeout(() => document.getElementById('footer').scrollIntoView(), 0);" style="color: var(--accent-color);">View Contact Details</a></p>
         `,
         confirmButtonText: 'Close',
-        confirmButtonColor: '#f5a623',
+        confirmButtonColor: '#f5a623', // Accent color
         width: 'auto',
         padding: '1.5em'
     });
 }
 
-// --- SweetAlert2: Show Nutrient Info Popup ---
+// --- SweetAlert2: Show Nutrient Info Popup (Original - for star snacks) ---
 function showNutrientInfo(title, description) {
     Swal.fire({
         title: title,
@@ -66,23 +42,53 @@ function showNutrientInfo(title, description) {
     });
 }
 
+// --- Data for New Package Modal ---
+const packageDetails = {
+    basic: {
+        displayName: "Basic Plan",
+        durations: {
+            '7days': { label: "7 Days", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "2" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "2" }, { name: "Small Fruit Mix", imgSrc: "images/items/fruit-mix-small.jpg", quantity: "Weekly" } ], cost: 210 },
+            '15days': { label: "15 Days", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "4" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "4" }, { name: "Medium Fruit Mix", imgSrc: "images/items/fruit-mix-medium.jpg", quantity: "Bi-Weekly" } ], cost: 400 },
+            '1month': { label: "1 Month", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "8" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "8" }, { name: "Large Fruit Mix", imgSrc: "images/items/fruit-mix-large.jpg", quantity: "Monthly" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "1" } ], cost: 750 },
+            '3months': { label: "3 Months", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "24" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "24" }, { name: "XL Fruit Mix", imgSrc: "images/items/fruit-mix-xl.jpg", quantity: "Quarterly" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "3" }, { name: "Recipe Card", imgSrc: "images/items/recipe-card.jpg", quantity: "1" } ], cost: 2100 },
+            '1year': { label: "1 Year", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "100" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "100" }, { name: "Annual Fruit Sub", imgSrc: "images/items/fruit-subscription.jpg", quantity: "Annual" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "12" }, { name: "Recipe Book", imgSrc: "images/items/recipe-book.jpg", quantity: "1" } ], cost: 7800 }
+        }
+    },
+    pro: {
+        displayName: "Pro Plan",
+        durations: {
+            '7days': { label: "7 Days", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "3" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "3" }, { name: "Medium Fruit Mix", imgSrc: "images/items/fruit-mix-medium.jpg", quantity: "Weekly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "1" } ], cost: 350 },
+            '15days': { label: "15 Days", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "6" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "6" }, { name: "Large Fruit Mix", imgSrc: "images/items/fruit-mix-large.jpg", quantity: "Bi-Weekly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "2" } ], cost: 650 },
+            '1month': { label: "1 Month", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "12" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "12" }, { name: "XL Fruit Mix", imgSrc: "images/items/fruit-mix-xl.jpg", quantity: "Monthly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "4" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "2" } ], cost: 1200 },
+            '3months': { label: "3 Months", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "36" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "36" }, { name: "XXL Fruit Mix", imgSrc: "images/items/fruit-mix-xxl.jpg", quantity: "Quarterly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "12" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "6" }, { name: "Recipe Book", imgSrc: "images/items/recipe-book.jpg", quantity: "1" } ], cost: 3300 },
+            '1year': { label: "1 Year", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "150" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "150" }, { name: "Premium Fruit Sub", imgSrc: "images/items/fruit-subscription-premium.jpg", quantity: "Annual" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "50" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "24" }, { name: "Premium Recipe Book", imgSrc: "images/items/recipe-book-premium.jpg", quantity: "1" } ], cost: 12000 }
+        }
+    },
+    ultraPro: {
+        displayName: "Ultra Pro Plan",
+        durations: {
+            '7days': { label: "7 Days", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "4" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "4" }, { name: "Organic Fruit Mix (L)", imgSrc: "images/items/fruit-mix-l-organic.jpg", quantity: "Weekly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "2" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "1" } ], cost: 500 },
+            '15days': { label: "15 Days", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "8" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "8" }, { name: "Organic Fruit Mix (XL)", imgSrc: "images/items/fruit-mix-xl-organic.jpg", quantity: "Bi-Weekly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "4" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "2" } ], cost: 950 },
+            '1month': { label: "1 Month", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "16" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "16" }, { name: "Organic Fruit Mix (XXL)", imgSrc: "images/items/fruit-mix-xxl-organic.jpg", quantity: "Monthly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "8" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "4" }, { name: "Personalized Snack", imgSrc: "images/items/personalized-snack.jpg", quantity: "1" } ], cost: 1800 },
+            '3months': { label: "3 Months", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "50" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "50" }, { name: "Organic Fruit Mix (XXL)", imgSrc: "images/items/fruit-mix-xxl-organic.jpg", quantity: "Quarterly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "24" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "12" }, { name: "Personalized Snack", imgSrc: "images/items/personalized-snack.jpg", quantity: "3" } ], cost: 5000 },
+            '1year': { label: "1 Year", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "200" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "200" }, { name: "Gourmet Fruit Sub", imgSrc: "images/items/fruit-subscription-gourmet.jpg", quantity: "Annual" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "100" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "50" }, { name: "Personalized Snack", imgSrc: "images/items/personalized-snack.jpg", quantity: "12" } ], cost: 18000 }
+        }
+    }
+};
+
+
 // --- DOM Ready ---
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded. Initializing scripts...");
+
     // AOS Animation Init
     try {
-        AOS.init({
-            duration: 800,
-            once: true,
-            easing: 'ease-out-quad',
-            offset: 50
-        });
+        AOS.init({ duration: 800, once: true, easing: 'ease-out-quad', offset: 50 });
         console.log("✅ AOS Initialized");
-    } catch (e) {
-        console.error("❌ AOS failed:", e);
-    }
+    } catch (e) { console.error("❌ AOS failed:", e); }
 
     // Navigation Scroll Highlight
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll('section[id], footer[id]'); // Include footer
     const navLiAnchors = document.querySelectorAll('.main-nav ul li a');
     const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 70;
 
@@ -92,12 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPos = window.pageYOffset + navHeight * 1.5;
 
             sections.forEach(section => {
-                if (scrollPos >= section.offsetTop) {
+                if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
                     current = section.getAttribute('id');
                 }
             });
-
-            if (window.pageYOffset < window.innerHeight * 0.3) current = 'home';
+             if (window.pageYOffset < (document.getElementById('home')?.offsetHeight || window.innerHeight) * 0.7) {
+                current = 'home';
+            }
 
             navLiAnchors.forEach(a => {
                 a.classList.remove('active');
@@ -106,81 +113,156 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    } else {
-        console.warn("No sections/nav links found for scroll highlight");
-    }
+    } else { console.warn("Scroll highlight: Sections, nav links, or navHeight not found."); }
 
     // Mobile Nav Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('.main-nav ul');
-
     if (menuToggle && navUl) {
-        menuToggle.addEventListener('click', () => {
-            navUl.classList.toggle('show-mobile-menu'); // Add CSS for this
-        });
-    }
+        menuToggle.addEventListener('click', () => navUl.classList.toggle('show-mobile-menu'));
+    } else { console.warn("Mobile nav: Toggle or UL not found."); }
 
-    // Swiper Packages Slider
-    const packageSliderElement = document.querySelector('.packages-slider');
-    const nextArrow = document.querySelector('.package-arrow-next');
-    const prevArrow = document.querySelector('.package-arrow-prev');
+    // --- NEW PACKAGE MODAL LOGIC ---
+    const openModalButtons = document.querySelectorAll('.btn-open-modal');
+    const durationModal = document.getElementById('durationModal');
+    const modalCloseButton = durationModal ? durationModal.querySelector('.modal-close') : null;
+    const modalPlanTitle = document.getElementById('modalPlanTitle');
+    const durationOptionsContainer = document.getElementById('durationOptionsContainer');
+    const modalItemContainer = document.getElementById('modalItemContainer');
+    const modalTotalCost = document.getElementById('modalTotalCost');
+    const modalConfirmButton = document.getElementById('modalConfirmButton');
 
-    if (packageSliderElement && typeof Swiper !== 'undefined') {
-        const packagesSwiper = new Swiper('.packages-slider', {
-            direction: 'horizontal',
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 30,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            },
-            speed: 800,
-            breakpoints: {
-                640: { slidesPerView: 2, spaceBetween: 40 },
-                1024: { slidesPerView: 3, spaceBetween: 50 }
-            },
-            navigation: {
-                nextEl: '.package-arrow-next',
-                prevEl: '.package-arrow-prev'
-            },
-            observer: true,
-            observeParents: true,
-        });
+    let currentSelectedPlanId = null;
+    let currentSelectedDurationKey = null;
 
-        console.log("✅ Swiper Packages Slider Initialized");
-    } else {
-        console.error("❌ Slider not initialized: Swiper or container missing");
-    }
+    function populateModal(planId) {
+        currentSelectedPlanId = planId;
+        currentSelectedDurationKey = null;
+        const planData = packageDetails[planId];
 
-    // Attach event listeners to "+" buttons
-    const foodCards = [
-        {
-            buttonSelector: '.food-card:nth-child(1) .add-button',
-            title: 'Nuts Chikki Combo',
-            description: 'A wholesome mix of Nuts Chikki, Raagi Biscuit, and Seasonal Fruits. Packed with protein, fiber, and essential vitamins for a healthy snack.'
-        },
-        {
-            buttonSelector: '.food-card:nth-child(2) .add-button',
-            title: 'Pumpkin Delight',
-            description: 'Enjoy Pumpkin Chikki, Badam Biscuit, and Seasonal Fruits. A perfect blend of antioxidants, healthy fats, and natural sweetness.'
-        },
-        {
-            buttonSelector: '.food-card:nth-child(3) .add-button',
-            title: 'Peanut Power Pack',
-            description: 'Includes Peanut Chikki, Cashew Biscuit, and Seasonal Fruits. Rich in energy, good fats, and nutrients to fuel your day.'
+        if (!planData) {
+            console.error("CRITICAL: Plan data not found for ID:", planId);
+            if(modalPlanTitle) modalPlanTitle.textContent = "Error: Plan not found";
+            if(durationOptionsContainer) durationOptionsContainer.innerHTML = '<p>Could not load options.</p>';
+            if(modalItemContainer) modalItemContainer.innerHTML = '<p class="error-message">Error loading item details.</p>';
+            if(modalTotalCost) modalTotalCost.textContent = '0';
+            if(modalConfirmButton) modalConfirmButton.disabled = true;
+            return;
         }
-    ];
 
+        if(modalPlanTitle) modalPlanTitle.textContent = `Select Duration for ${planData.displayName}`;
+        if(durationOptionsContainer) durationOptionsContainer.innerHTML = '';
+
+        Object.keys(planData.durations).forEach(durationKey => {
+            const durationInfo = planData.durations[durationKey];
+            const radioId = `duration-${planId}-${durationKey}`;
+            const radioInput = document.createElement('input');
+            radioInput.type = 'radio';
+            radioInput.name = `planDuration-${planId}`;
+            radioInput.id = radioId;
+            radioInput.value = durationKey;
+            radioInput.addEventListener('change', handleDurationChange);
+            const label = document.createElement('label');
+            label.htmlFor = radioId;
+            label.textContent = durationInfo.label;
+            if(durationOptionsContainer) { durationOptionsContainer.appendChild(radioInput); durationOptionsContainer.appendChild(label); }
+        });
+
+        if(modalItemContainer) modalItemContainer.innerHTML = '<p class="select-duration-prompt">Select a duration above to see items and cost.</p>';
+        if(modalTotalCost) modalTotalCost.textContent = '0';
+        if(modalConfirmButton) modalConfirmButton.disabled = true;
+    }
+
+    function handleDurationChange(event) {
+        currentSelectedDurationKey = event.target.value;
+        if (!currentSelectedPlanId || !packageDetails[currentSelectedPlanId]) {
+            if (modalItemContainer) modalItemContainer.innerHTML = '<p class="error-message">Error loading item details.</p>';
+            return;
+        }
+        const planData = packageDetails[currentSelectedPlanId];
+        if (!planData.durations || !planData.durations[currentSelectedDurationKey]) {
+            if (modalItemContainer) modalItemContainer.innerHTML = '<p class="error-message">Error loading items for this duration.</p>';
+            return;
+        }
+        const durationInfo = planData.durations[currentSelectedDurationKey];
+        if (modalItemContainer) modalItemContainer.innerHTML = '';
+
+        if (durationInfo.items && durationInfo.items.length > 0) {
+            durationInfo.items.forEach(item => {
+                const itemCard = document.createElement('div');
+                itemCard.classList.add('modal-item-card');
+                const itemImage = document.createElement('img');
+                itemImage.src = item.imgSrc;
+                itemImage.alt = item.name;
+                itemImage.classList.add('modal-item-image');
+                itemImage.onerror = function() { this.onerror=null; this.src='images/items/placeholder.png'; this.alt='Image not available'; console.warn(`Image failed: ${item.imgSrc}`); };
+                const itemName = document.createElement('p');
+                itemName.classList.add('modal-item-name');
+                itemName.textContent = item.name;
+                const itemQuantity = document.createElement('p');
+                itemQuantity.classList.add('modal-item-quantity');
+                itemQuantity.textContent = `Qty: ${item.quantity || 'N/A'}`;
+                itemCard.appendChild(itemImage); itemCard.appendChild(itemName); itemCard.appendChild(itemQuantity);
+                if (modalItemContainer) modalItemContainer.appendChild(itemCard);
+            });
+        } else {
+            if (modalItemContainer) modalItemContainer.innerHTML = '<p class="no-items-message">No specific items listed for this duration.</p>';
+        }
+        if (modalTotalCost) modalTotalCost.textContent = durationInfo.cost !== undefined ? durationInfo.cost : 'N/A';
+        if (modalConfirmButton) modalConfirmButton.disabled = false;
+    }
+
+    function openDurationModal(planId) {
+        if (!durationModal) { console.error("Modal element not found."); return; }
+        populateModal(planId);
+        durationModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDurationModal() {
+        if (!durationModal) { return; }
+        durationModal.classList.remove('show');
+        document.body.style.overflow = '';
+        if(modalItemContainer) modalItemContainer.innerHTML = ''; // Clear items on close
+        if(modalTotalCost) modalTotalCost.textContent = '0';
+    }
+
+    if (openModalButtons.length > 0) {
+        openModalButtons.forEach(button => {
+            const planId = button.dataset.planId;
+            if (!planId) { console.warn("Button missing data-plan-id:", button); return; }
+            button.addEventListener('click', (event) => { event.preventDefault(); openDurationModal(button.dataset.planId); });
+        });
+    } else { console.warn("No '.btn-open-modal' buttons found."); }
+
+    if (modalCloseButton) { modalCloseButton.addEventListener('click', closeDurationModal); }
+    if (durationModal) { durationModal.addEventListener('click', (event) => { if (event.target === durationModal) closeDurationModal(); }); }
+
+    if (modalConfirmButton) {
+        modalConfirmButton.addEventListener('click', () => {
+            if (currentSelectedPlanId && currentSelectedDurationKey && packageDetails[currentSelectedPlanId] && packageDetails[currentSelectedPlanId].durations[currentSelectedDurationKey]) {
+                const plan = packageDetails[currentSelectedPlanId].displayName;
+                const durationDetail = packageDetails[currentSelectedPlanId].durations[currentSelectedDurationKey];
+                Swal.fire({
+                    title: 'Selection Confirmed!',
+                    html: `You've selected <strong>${plan}</strong> for <strong>${durationDetail.label}</strong>.<br>Total Cost: <strong>₹${durationDetail.cost}</strong>.<br><br>Proceed to download the app.`,
+                    icon: 'success', confirmButtonText: 'Download App', confirmButtonColor: '#f5a623',
+                }).then((result) => { if (result.isConfirmed) { closeDurationModal(); showContactPopup(); } });
+            } else { Swal.fire('Error', 'Please make a complete selection.', 'error'); }
+        });
+    }
+
+    // Star Snack card info buttons
+    const foodCards = [
+        { buttonSelector: '.food-card:nth-child(1) .add-button', title: 'Nuts Chikki Combo', description: 'Nuts Chikki, Raagi Biscuit, Seasonal Fruits. Protein, fiber, vitamins.'},
+        { buttonSelector: '.food-card:nth-child(2) .add-button', title: 'Pumpkin Delight', description: 'Pumpkin Chikki, Badam Biscuit, Seasonal Fruits. Antioxidants, healthy fats.'},
+        { buttonSelector: '.food-card:nth-child(3) .add-button', title: 'Peanut Power Pack', description: 'Peanut Chikki, Cashew Biscuit, Seasonal Fruits. Energy, good fats, nutrients.'}
+    ];
     foodCards.forEach(card => {
         const button = document.querySelector(card.buttonSelector);
-        if (button) {
-            button.addEventListener('click', () => {
-                showNutrientInfo(card.title, card.description);
-            });
-        }
+        if (button) { button.addEventListener('click', () => showNutrientInfo(card.title, card.description)); }
+        else { console.warn(`Food card button not found: ${card.buttonSelector}`);}
     });
 
-    console.log("✅ DOM fully loaded & scripts executed");
+    console.log("✅ All DOMContentLoaded scripts executed.");
 });
