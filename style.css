@@ -35,13 +35,60 @@ a { text-decoration: none; color: var(--accent-color); }
 
 /* --- Navigation --- */
 .main-nav { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); background-color: var(--nav-bg); backdrop-filter: blur(10px); box-shadow: var(--shadow-light); z-index: 1000; transition: background-color 0.3s ease; }
-.nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 100%; display: flex; justify-content: space-between; align-items: center; }
-.logo1 { max-height: 60px; width: auto; object-fit: contain; }
-.main-nav ul { list-style: none; display: flex; gap: 30px; }
+.nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 100%; display: flex; justify-content: space-between; align-items: flex-start; padding-top: 10px; }
+.logo1 {
+    max-height: 120px; /* Keep the size */
+    width: auto;
+    object-fit: contain;
+    background-color: var(--header-shape-bg); /* Circle background color */
+    border-radius: 50%; /* Keep it circular */
+    padding: 6px; /* Reduced padding for a thinner border */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+    filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.2)); /* Additional shadow */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+    position: relative; /* Allow positioning */
+    top: 10px; /* Keep it slightly down for better visibility */
+}
+    
+.logo1:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+.main-nav ul { 
+    list-style: none; 
+    display: flex; 
+    gap: 30px; 
+    align-items: center; /* Ensure vertical centering */
+    height: 100%; /* Match the height of the navigation bar */
+}
 .main-nav ul li a { color: var(--text-light); font-weight: 500; font-size: 0.9rem; padding: 5px 0; position: relative; transition: var(--transition); }
-.main-nav ul li a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
+.main-nav ul li a::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: -2px; 
+    left: 0; 
+    width: 0; 
+    height: 2px; 
+    background-color: var(--accent-color); 
+    transition: width 0.3s ease; 
+}
 .main-nav ul li a:hover, .main-nav ul li a.active { color: var(--heading-color); }
-.main-nav ul li a:hover::after, .main-nav ul li a.active::after { width: 80%; }
+.main-nav ul li a:hover::after, .main-nav ul li a.active::after { 
+    width: 100%; /* Ensure the underline spans the full width of the text */
+}
+.main-nav ul li a[href="#footer"] {
+    font-weight: bold;
+    color: var(--accent-color);
+    /* text-decoration: underline; */
+    background-color: rgba(245, 166, 35, 0.1); /* Subtle background highlight */
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-nav ul li a[href="#footer"]:hover {
+    background-color: rgba(245, 166, 35, 0.2); /* Slightly darker on hover */
+    color: #000000; /* Darker accent color */
+}
 .menu-toggle { display: none; color: var(--heading-color); font-size: 1.5rem; cursor: pointer; }
 .download-button { display: inline-block; background-color: #4CAF50; color: white; font-weight: bold; padding: 10px 20px; text-decoration: none; border-radius: 8px; border: none; cursor: pointer; text-align: center; transition: background-color 0.3s ease; }
 .download-button:hover { background-color: #45a049; }
@@ -128,10 +175,40 @@ section#values { background-color: #f9f3e8; width: 100%; padding: 100px 20px; po
 .food-card p { font-size: 0.85rem; min-height: 30px; margin-bottom: 10px; }
 .card-extra-info { margin-bottom: 10px; min-height: 20px; }
 .rating { color: var(--accent-color); font-weight: 500; font-size: 0.8rem; }
-.card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+.card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; min-height: 50px; }
 .price { font-weight: 600; color: var(--heading-color); font-size: 1.1rem; }
 .add-button { background-color: var(--accent-color); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
 .add-button:hover { background-color: #e09015; }
+
+/* Nutritional Value Styling */
+.nutritional-value {
+    font-size: 0.9rem; /* Consistent font size */
+    font-weight: 600; /* Bold for emphasis */
+    padding: 5px 10px; /* Add padding for better spacing */
+    border-radius: 8px; /* Rounded corners for a polished look */
+    display: inline-block; /* Ensure it doesn't stretch */
+    text-align: center; /* Center-align text */
+    margin: 0 auto; /* Center within the card */;
+}
+
+/* Unique Designs for Each Nutritional Value */
+.food-card:nth-child(1) .nutritional-value {
+    color: #2ecc71; /* Green for high protein */
+    background-color: rgba(46, 204, 113, 0.1); /* Subtle green background */
+    border: 1px solid #2ecc71; /* Green border */
+}
+
+.food-card:nth-child(2) .nutritional-value {
+    color: #3498db; /* Blue for rich in fiber */
+    background-color: rgba(52, 152, 219, 0.1); /* Subtle blue background */
+    border: 1px solid #3498db; /* Blue border */
+}
+
+.food-card:nth-child(3) .nutritional-value {
+    color: #e74c3c; /* Red for energy boosting */
+    background-color: rgba(231, 76, 60, 0.1); /* Subtle red background */
+    border: 1px solid #e74c3c; /* Red border */
+}
 
 /* --- Tips Section --- */
 .tips-section { background-color: #f7eedd; padding: 60px 20px; }

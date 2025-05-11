@@ -22,7 +22,11 @@ function showContactPopup(event) {
                     <span><i class="fab fa-apple"></i> App Store</span>
                 </div>
             </div>
-            <p style="margin-top: 20px;"><a href="#footer" onclick="Swal.close(); setTimeout(() => document.getElementById('footer').scrollIntoView(), 0);" style="color: var(--accent-color);">View Contact Details</a></p>
+            <p style="margin-top: 20px;">
+                <a href="#footer" onclick="Swal.close(); setTimeout(() => document.getElementById('footer').scrollIntoView({ behavior: 'smooth', block: 'end' }), 500);" style="color: var(--accent-color);">
+                    View Contact Details
+                </a>
+            </p>
         `,
         confirmButtonText: 'Close',
         confirmButtonColor: '#f5a623', // Accent color
