@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Meta Information -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthy Bites - Nourish Your Body</title>
+    <title>Healthy Snack Box</title>
 
     <!-- External Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,14 +22,17 @@
     <nav class="main-nav">
         <div class="nav-container">
             <!-- Logo -->
-            <img src="logo.jpg" class="logo1" alt="Healthy Bites Logo"> <!-- Adjusted path -->
-            <!-- Navigation Links -->
+            <!-- Logo -->
+            <a href="#home" class="logo-link" aria-label="Go to Home page">
+                <img src="logo.jpg" class="logo1" alt="Healthy Bites Logo"> <!-- Adjusted path -->
+            </a>            <!-- Navigation Links -->
             <ul>
                 <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#mission">About Us</a></li>
-                <li><a href="#products">Services</a></li>
-                <li><a href="#packages">Packages</a></li> <!-- Added Packages to Nav -->
-                <li><a href="#footer" class="active">Contact Us</a></li>
+                <li><a href="#AboutUs">About Us</a></li>
+                <li><a href="#Services">Services</a></li>
+                <li><a href="#Packages">Packages</a></li>
+                <li><a href="#ContactUs">Contact Us</a></li>
+                
             </ul>
             <!-- Download App Button -->
             <a href="#" class="download-button" onclick="showContactPopup(event)">Download App</a>
@@ -47,12 +51,13 @@
     <!-- Header Section -->
     <header id="home">
         <!-- Decorative Items -->
-        <span class="deco-item item-1"><i class="fas fa-pepper-hot"></i></span>
-        <span class="deco-item item-2">🍅</span>
-        <span class="deco-item item-3"><i class="fas fa-leaf"></i></span>
-        <span class="deco-item item-4">🌿</span>
-        <span class="deco-item item-5"><i class="fas fa-circle-notch"></i></span>
-        <span class="deco-item item-6">🌶️</span>
+        <span class="deco-item item-1"><i class="fas fa-candy-cane"></i></span> <!-- For chikki -->
+        <span class="deco-item item-1">🍯</span> <!-- Honey pot for chikki -->
+        <span class="deco-item item-2">🍌</span> <!-- Banana for fruits -->
+        <span class="deco-item item-3">🍪</span> <!-- Cookie for biscuits -->
+        <span class="deco-item item-4">🥘</span> <!-- Pot of food for South Indian snacks -->
+        <span class="deco-item item-5">🍚</span> <!-- Rice for South Indian snacks -->
+        <span class="deco-item item-6">🥜</span> <!-- Peanuts for chikki -->
 
         <!-- Hero Content -->
         <div class="hero-content-wrapper">
@@ -66,7 +71,7 @@
             </div>
             <!-- Hero Image -->
             <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=70" alt="Delicious Food Bowl">
+                <img src="https://media1.popsugar-assets.com/files/thumbor/Hq6ojVDRNjwgoB9ypbDmrQkbmcs=/fit-in/1584x1056/top/filters:format_auto():upscale()/2023/10/20/945/n/1922729/7fa9509d6532f427a05638.80444960_GettyImages-.jpg" alt="Delicious Food Bowl">
             </div>
         </div>
     </header>
@@ -74,7 +79,7 @@
     <!-- Main Content -->
     <main>
         <!-- Mission Section -->
-        <section id="mission">
+        <section id="AboutUs">
             <div class="mission-container">
                 <div class="mission-image" data-aos="fade-right">
                     <img src="https://images6.alphacoders.com/804/804136.jpg" alt="Healthy Bites Mission - Community Eating">
@@ -128,14 +133,14 @@
         </section>
 
         <!-- Star Snacks Section (Services) -->
-        <section id="products">
+        <section id="Services">
             <h2>Our Star Snacks</h2>
             <p class="subtitle">Carefully curated combinations for optimal nutrition and taste</p>
             <div class="top-list-container">
                 <div class="food-card" data-aos="zoom-in">
                     <img src="https://www.cookwithmanali.com/wp-content/uploads/2019/12/Mixed-Nuts-Chikki-500x500.jpg" alt="Nuts Chikki Combo">
                     <h3>Nuts Chikki Combo</h3>
-                    <p>Nuts Chikki, Raagi Biscuit, Seasonal Fruits</p>
+                    <p>Nuts Chikki, Raagi Biscuit, Fresh Seasonal Fruits</p>
                     <div class="card-extra-info"><span class="rating">⭐ 4.8 (120 reviews)</span></div>
                     <div class="card-footer">
                         <span class="nutritional-value">High Protein, Low Sugar</span>
@@ -190,7 +195,7 @@
         </section>
 
         <!-- Packages Section -->
-        <section id="packages">
+        <section id="Packages">
             <h2>Choose Your Perfect Plan</h2>
             <p class="subtitle">Flexible options to fit your healthy lifestyle. Select a base plan, then customize your duration.</p>
 
@@ -206,7 +211,7 @@
                         <li><i class="fas fa-check-circle"></i> Focus on core nutrients</li>
                         <li><i class="fas fa-check-circle"></i> Perfect entry to healthy snacking</li>
                     </ul>
-                    <button class="btn btn-primary">Customize & View Pricing</button>
+                    <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
                 </div>
 
                 <!-- Pro Plan Card -->
@@ -221,7 +226,7 @@
                         <li><i class="fas fa-check-circle"></i> Balanced for active lifestyles</li>
                         <li><i class="fas fa-check-circle"></i> Surprise healthy treats</li>
                     </ul>
-                    <button class="btn btn-primary">Customize & View Pricing</button>
+                    <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
                 </div>
 
                 <!-- Ultra Pro Plan Card -->
@@ -236,7 +241,7 @@
                         <li><i class="fas fa-check-circle"></i> Personalized snack options</li>
                         <li><i class="fas fa-check-circle"></i> Exclusive wellness perks</li>
                     </ul>
-                    <button class="btn btn-primary">Customize & View Pricing</button>
+                    <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
                 </div>
             </div>
         </section>
@@ -248,7 +253,7 @@
     </main>
 
     <!-- Footer -->
-    <footer id="footer">
+    <footer id="ContactUs">
         <div class="footer-content">
             <div class="footer-column about-column">
                 <h3>Healthy Bites</h3>

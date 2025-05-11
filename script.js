@@ -1,5 +1,5 @@
-// --- SweetAlert2: Show App Download QR Codes (Used by new modal & nav button) ---
-function showContactPopup(event) {
+// --- SweetAlert2: Show App Download QR Codes with Fixed Footer Redirect ---
+function showContactPopup(event, redirectToFooter = false) {
     if (event) event.preventDefault();
 
     const androidAppLink = "https://play.google.com/store/apps/details?id=com.example.healthybites"; // Replace with your actual link
@@ -23,7 +23,7 @@ function showContactPopup(event) {
                 </div>
             </div>
             <p style="margin-top: 20px;">
-                <a href="#footer" onclick="Swal.close(); setTimeout(() => document.getElementById('footer').scrollIntoView({ behavior: 'smooth', block: 'end' }), 500);" style="color: var(--accent-color);">
+                <a href="#ContactUs" id="contactLinkInPopup" style="color: var(--accent-color);">
                     View Contact Details
                 </a>
             </p>
@@ -31,55 +31,42 @@ function showContactPopup(event) {
         confirmButtonText: 'Close',
         confirmButtonColor: '#f5a623', // Accent color
         width: 'auto',
-        padding: '1.5em'
+        padding: '1.5em',
+        didClose: () => {
+            // Check if "redirectToFooter" parameter is true or if user clicked on the "View Contact Details" link
+            if (redirectToFooter || document.getElementById('contactLinkInPopup').hasAttribute('clicked')) {
+                setTimeout(() => {
+                    const contactUsSection = document.getElementById('ContactUs');
+                    if (contactUsSection) {
+                        contactUsSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+        }
     });
+
+    // Add event listener to the "View Contact Details" link
+    setTimeout(() => {
+        const contactLink = document.getElementById('contactLinkInPopup');
+        if (contactLink) {
+            contactLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.setAttribute('clicked', 'true');
+                Swal.close();
+            });
+        }
+    }, 100);
 }
 
-// --- SweetAlert2: Show Nutrient Info Popup (Original - for star snacks) ---
+// --- SweetAlert2: Show Nutrient Info Popup (Fixed for HTML content) ---
 function showNutrientInfo(title, description) {
     Swal.fire({
         title: title,
-        text: description,
-        icon: 'info',
+        html: description, // Changed from 'text' to 'html' to render HTML content
         confirmButtonText: 'Close',
-        confirmButtonColor: '#f5a623',
+        confirmButtonColor: '#f5a623'
     });
 }
-
-// --- Data for New Package Modal ---
-const packageDetails = {
-    basic: {
-        displayName: "Basic Plan",
-        durations: {
-            '7days': { label: "7 Days", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "2" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "2" }, { name: "Small Fruit Mix", imgSrc: "images/items/fruit-mix-small.jpg", quantity: "Weekly" } ], cost: 210 },
-            '15days': { label: "15 Days", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "4" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "4" }, { name: "Medium Fruit Mix", imgSrc: "images/items/fruit-mix-medium.jpg", quantity: "Bi-Weekly" } ], cost: 400 },
-            '1month': { label: "1 Month", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "8" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "8" }, { name: "Large Fruit Mix", imgSrc: "images/items/fruit-mix-large.jpg", quantity: "Monthly" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "1" } ], cost: 750 },
-            '3months': { label: "3 Months", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "24" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "24" }, { name: "XL Fruit Mix", imgSrc: "images/items/fruit-mix-xl.jpg", quantity: "Quarterly" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "3" }, { name: "Recipe Card", imgSrc: "images/items/recipe-card.jpg", quantity: "1" } ], cost: 2100 },
-            '1year': { label: "1 Year", items: [ { name: "Nuts Chikki", imgSrc: "images/items/nuts-chikki.jpg", quantity: "100" }, { name: "Raagi Biscuits", imgSrc: "images/items/raagi-biscuit.jpg", quantity: "100" }, { name: "Annual Fruit Sub", imgSrc: "images/items/fruit-subscription.jpg", quantity: "Annual" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "12" }, { name: "Recipe Book", imgSrc: "images/items/recipe-book.jpg", quantity: "1" } ], cost: 7800 }
-        }
-    },
-    pro: {
-        displayName: "Pro Plan",
-        durations: {
-            '7days': { label: "7 Days", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "3" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "3" }, { name: "Medium Fruit Mix", imgSrc: "images/items/fruit-mix-medium.jpg", quantity: "Weekly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "1" } ], cost: 350 },
-            '15days': { label: "15 Days", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "6" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "6" }, { name: "Large Fruit Mix", imgSrc: "images/items/fruit-mix-large.jpg", quantity: "Bi-Weekly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "2" } ], cost: 650 },
-            '1month': { label: "1 Month", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "12" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "12" }, { name: "XL Fruit Mix", imgSrc: "images/items/fruit-mix-xl.jpg", quantity: "Monthly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "4" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "2" } ], cost: 1200 },
-            '3months': { label: "3 Months", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "36" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "36" }, { name: "XXL Fruit Mix", imgSrc: "images/items/fruit-mix-xxl.jpg", quantity: "Quarterly" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "12" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "6" }, { name: "Recipe Book", imgSrc: "images/items/recipe-book.jpg", quantity: "1" } ], cost: 3300 },
-            '1year': { label: "1 Year", items: [ { name: "Premium Chikki", imgSrc: "images/items/premium-chikki.jpg", quantity: "150" }, { name: "Seed Biscuits", imgSrc: "images/items/seed-biscuit.jpg", quantity: "150" }, { name: "Premium Fruit Sub", imgSrc: "images/items/fruit-subscription-premium.jpg", quantity: "Annual" }, { name: "Energy Bar", imgSrc: "images/items/energy-bar.jpg", quantity: "50" }, { name: "Surprise Treat", imgSrc: "images/items/surprise-treat.jpg", quantity: "24" }, { name: "Premium Recipe Book", imgSrc: "images/items/recipe-book-premium.jpg", quantity: "1" } ], cost: 12000 }
-        }
-    },
-    ultraPro: {
-        displayName: "Ultra Pro Plan",
-        durations: {
-            '7days': { label: "7 Days", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "4" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "4" }, { name: "Organic Fruit Mix (L)", imgSrc: "images/items/fruit-mix-l-organic.jpg", quantity: "Weekly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "2" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "1" } ], cost: 500 },
-            '15days': { label: "15 Days", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "8" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "8" }, { name: "Organic Fruit Mix (XL)", imgSrc: "images/items/fruit-mix-xl-organic.jpg", quantity: "Bi-Weekly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "4" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "2" } ], cost: 950 },
-            '1month': { label: "1 Month", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "16" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "16" }, { name: "Organic Fruit Mix (XXL)", imgSrc: "images/items/fruit-mix-xxl-organic.jpg", quantity: "Monthly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "8" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "4" }, { name: "Personalized Snack", imgSrc: "images/items/personalized-snack.jpg", quantity: "1" } ], cost: 1800 },
-            '3months': { label: "3 Months", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "50" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "50" }, { name: "Organic Fruit Mix (XXL)", imgSrc: "images/items/fruit-mix-xxl-organic.jpg", quantity: "Quarterly" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "24" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "12" }, { name: "Personalized Snack", imgSrc: "images/items/personalized-snack.jpg", quantity: "3" } ], cost: 5000 },
-            '1year': { label: "1 Year", items: [ { name: "Gourmet Chikki", imgSrc: "images/items/gourmet-chikki.jpg", quantity: "200" }, { name: "Superfood Biscuits", imgSrc: "images/items/superfood-biscuit.jpg", quantity: "200" }, { name: "Gourmet Fruit Sub", imgSrc: "images/items/fruit-subscription-gourmet.jpg", quantity: "Annual" }, { name: "Protein Bar", imgSrc: "images/items/protein-bar.jpg", quantity: "100" }, { name: "Detox Drink", imgSrc: "images/items/detox-drink.jpg", quantity: "50" }, { name: "Personalized Snack", imgSrc: "images/items/personalized-snack.jpg", quantity: "12" } ], cost: 18000 }
-        }
-    }
-};
-
 
 // --- DOM Ready ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -92,32 +79,66 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) { console.error("❌ AOS failed:", e); }
 
     // Navigation Scroll Highlight
-    const sections = document.querySelectorAll('section[id], footer[id]'); // Include footer
+    const sections = document.querySelectorAll('header[id], section[id], footer[id]'); // Changed ContactUs[id] to footer[id]
     const navLiAnchors = document.querySelectorAll('.main-nav ul li a');
     const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 70;
 
-    if (sections.length && navLiAnchors.length) {
-        window.addEventListener('scroll', () => {
-            let current = 'home';
-            const scrollPos = window.pageYOffset + navHeight * 1.5;
+    if (sections.length > 0 && navLiAnchors.length > 0) {
+        const updateActiveLink = () => {
+            const scrollY = window.pageYOffset;
+            const viewportHeight = window.innerHeight;
+            const documentHeight = document.body.offsetHeight;
 
-            sections.forEach(section => {
-                if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
-                    current = section.getAttribute('id');
+            let currentSectionId = '';
+
+            // Priority 1: Footer if scrolled to the very bottom
+            // Check if the bottom of the viewport is at or very near the bottom of the document
+            if ((scrollY + viewportHeight) >= documentHeight - 30) { // 30px buffer from actual bottom
+                currentSectionId = 'ContactUs';
+            }
+            // Priority 2: Home if at the very top
+            else if (scrollY < 50) { // If scrolled less than 50px from the top
+                currentSectionId = 'home';
+            }
+            // Priority 3: Other sections
+            else {
+                // Iterate from the bottom-most section upwards
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = sections[i];
+                    const sectionTop = section.offsetTop;
+                    // A section is considered active if its top has scrolled past a point
+                    // slightly below the fixed navigation bar.
+                    // (navHeight + a small buffer, e.g., 10px)
+                    const activationPoint = scrollY + navHeight + 10;
+
+                    if (sectionTop <= activationPoint) {
+                        currentSectionId = section.getAttribute('id');
+                        break; // Found the current section
+                    }
                 }
-            });
-             if (window.pageYOffset < (document.getElementById('home')?.offsetHeight || window.innerHeight) * 0.7) {
-                current = 'home';
+                // Fallback if no section was determined by the loop (e.g., in a gap)
+                // and we are not at the very top (which is handled by Priority 2)
+                if (!currentSectionId && document.getElementById('home')) {
+                     currentSectionId = 'home'; // Default to home if in an unknown state
+                }
             }
 
+            // Apply 'active' class
             navLiAnchors.forEach(a => {
                 a.classList.remove('active');
-                if (a.getAttribute('href') === `#${current}`) {
+                if (a.getAttribute('href') === `#${currentSectionId}`) {
                     a.classList.add('active');
                 }
             });
-        });
-    } else { console.warn("Scroll highlight: Sections, nav links, or navHeight not found."); }
+        };
+
+        window.addEventListener('scroll', updateActiveLink);
+        // Trigger once on load to set initial state
+        updateActiveLink();
+
+    } else {
+        console.warn("Scroll highlight: Target sections or navigation links not found.");
+    }
 
     // Mobile Nav Toggle
     const menuToggle = document.querySelector('.menu-toggle');
@@ -128,14 +149,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Star Snack card info buttons
     const foodCards = [
-        { buttonSelector: '.food-card:nth-child(1) .add-button', title: 'Nuts Chikki Combo', description: 'Nuts Chikki, Raagi Biscuit, Seasonal Fruits. Protein, fiber, vitamins.'},
-        { buttonSelector: '.food-card:nth-child(2) .add-button', title: 'Pumpkin Delight', description: 'Pumpkin Chikki, Badam Biscuit, Seasonal Fruits. Antioxidants, healthy fats.'},
-        { buttonSelector: '.food-card:nth-child(3) .add-button', title: 'Peanut Power Pack', description: 'Peanut Chikki, Cashew Biscuit, Seasonal Fruits. Energy, good fats, nutrients.'}
+        {
+          buttonSelector: '.food-card:nth-child(1) .add-button',
+          title : 'Nuts Chikki Combo',
+          description: `
+            <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
+              <li><strong>Nuts Chikki</strong> – Rich in protein and healthy fats</li>
+              <li><strong>Ragi Biscuits</strong> – Packed with fiber and minerals</li>
+              <li><strong>Seasonal Fruits</strong> – Full of vitamins and antioxidants</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
+            Protein, fiber, vitamins</p>
+          `
+        },
+        {
+          buttonSelector: '.food-card:nth-child(2) .add-button',
+          title: 'Pumpkin Chikki Combo',
+          description: `
+            <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
+              <li><strong>Pumpkin Chikki</strong> – Packed with antioxidants and healthy fats</li>
+              <li><strong>Badam Biscuits</strong> – Nut-rich and heart-healthy</li>
+              <li><strong>Seasonal Fruits</strong> – Natural source of vitamins</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
+            Antioxidants, healthy fats</p>
+          `
+        },
+        {
+          buttonSelector: '.food-card:nth-child(3) .add-button',
+          title: 'Peanut Chikki Combo',
+          description: `
+            <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
+              <li><strong>Peanut Chikki</strong> – Great source of energy and good fats</li>
+              <li><strong>Cashew Biscuits</strong> – Rich in healthy fats and nutrients</li>
+              <li><strong>Seasonal Fruits</strong> – Full of essential vitamins and fiber</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
+            Energy, good fats, nutrients</p>
+          `
+        }
     ];
+      
     foodCards.forEach(card => {
         const button = document.querySelector(card.buttonSelector);
         if (button) { button.addEventListener('click', () => showNutrientInfo(card.title, card.description)); }
         else { console.warn(`Food card button not found: ${card.buttonSelector}`);}
+    });
+
+    // Update existing onclick attributes for contact popups to include redirection
+    document.querySelectorAll('[onclick*="showContactPopup"]').forEach(element => {
+        const originalOnclick = element.getAttribute('onclick');
+        if (originalOnclick && originalOnclick.includes('showContactPopup') && !originalOnclick.includes('true')) {
+            element.setAttribute('onclick', originalOnclick.replace('showContactPopup(event)', 'showContactPopup(event, true)'));
+        }
     });
 
     console.log("✅ All DOMContentLoaded scripts executed.");
