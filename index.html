@@ -15,290 +15,291 @@
 
     <!-- Link to Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.jpg" type="image/jpeg"> <!-- Adjusted path -->
+    <link rel="icon" href="" type="image/jpeg"> <!-- Adjusted path -->
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <!-- Logo -->
-            <!-- Logo -->
-            <a href="#home" class="logo-link" aria-label="Go to Home page">
-                <img src="logo.jpg" class="logo1" alt="Healthy Bites Logo"> <!-- Adjusted path -->
-            </a>            <!-- Navigation Links -->
-            <ul>
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#AboutUs">About Us</a></li>
-                <li><a href="#Services">Services</a></li>
-                <li><a href="#Packages">Packages</a></li>
-                <li><a href="#ContactUs">Contact Us</a></li>
-                
-            </ul>
-            <!-- Download App Button -->
-            <a href="#" class="download-button" onclick="showContactPopup(event)">Download App</a>
-            <!-- Mobile Menu Toggle -->
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Floating Download Button -->
-    <a href="#" class="floating-download-button" onclick="showContactPopup(event)" aria-label="Download App">
-        <i class="fas fa-download"></i>
-    </a>
-
-    <!-- Header Section -->
-    <header id="home">
-        <!-- Decorative Items -->
-        <span class="deco-item item-1"><i class="fas fa-candy-cane"></i></span> <!-- For chikki -->
-        <span class="deco-item item-1">🍯</span> <!-- Honey pot for chikki -->
-        <span class="deco-item item-2">🍌</span> <!-- Banana for fruits -->
-        <span class="deco-item item-3">🍪</span> <!-- Cookie for biscuits -->
-        <span class="deco-item item-4">🥘</span> <!-- Pot of food for South Indian snacks -->
-        <span class="deco-item item-5">🍚</span> <!-- Rice for South Indian snacks -->
-        <span class="deco-item item-6">🥜</span> <!-- Peanuts for chikki -->
-
-        <!-- Hero Content -->
-        <div class="hero-content-wrapper">
-            <div class="hero-text">
-                <h2>Mindful Snacking Made Easy</h2>
-                <p><i>Discover a healthier you with every bite. Wholesome, flavorful, and crafted for your well-being. Snack smarter, live healthier.</i></p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary">Explore Snacks</a>
-                    <a href="#packages" class="btn btn-secondary">View Packages</a>
-                </div>
-            </div>
-            <!-- Hero Image -->
-            <div class="hero-image">
-                <img src="https://media1.popsugar-assets.com/files/thumbor/Hq6ojVDRNjwgoB9ypbDmrQkbmcs=/fit-in/1584x1056/top/filters:format_auto():upscale()/2023/10/20/945/n/1922729/7fa9509d6532f427a05638.80444960_GettyImages-.jpg" alt="Delicious Food Bowl">
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Mission Section -->
-        <section id="AboutUs">
-            <div class="mission-container">
-                <div class="mission-image" data-aos="fade-right">
-                    <img src="https://images6.alphacoders.com/804/804136.jpg" alt="Healthy Bites Mission - Community Eating">
-                </div>
-                <div class="mission-text" data-aos="fade-left">
-                    <h2>Our Mission</h2>
-                    <p class="subtitle">To Provide Healthy and Delicious Snacks for a Busy Lifestyle</p>
-                    <div class="quote-block">
-                        <p>"Bite into better health, one snack at a time. At Healthy Bites, we believe that healthy eating should be easy and convenient. That’s why we’re dedicated to providing a variety of healthy snack options that are perfect for on-the-go."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Values Section -->
-        <section id="values">
-            <div class="values-section-content">
-                <div class="values-header">
-                    <div class="values-text-content">
-                        <h2>Our Values</h2>
-                        <p class="subtitle">We're committed to excellence in every aspect of our service</p>
-                        <p><i><b>We use whole, unprocessed ingredients to ensure our snacks are nutrient-rich and free from artificial additives. Each snack provides a perfect balance of macronutrients and micronutrients to fuel your day.</b></i></p>
-                    </div>
-                    <div class="values-decorative-image" data-aos="fade-left" data-aos-delay="100">
-                        <img src="https://wallpapercave.com/wp/wp6557500.jpg" alt="Fresh Ingredients">
-                    </div>
-                </div>
-                <div class="values-container">
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="value-icon-wrapper"><i class="fas fa-award"></i></div>
-                        <h3>Quality</h3>
-                        <p>Only the finest natural ingredients make the cut. Highest-quality ingredients and sustainable practices.</p>
-                    </div>
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="value-icon-wrapper"><i class="fas fa-clock"></i></div>
-                        <h3>Convenience</h3>
-                        <p>Ready-to-eat snacks to fit your busy schedule. Easy and convenient for your on-the-go lifestyle.</p>
-                    </div>
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="value-icon-wrapper"><i class="fas fa-leaf"></i></div>
-                        <h3>Sustainability</h3>
-                        <p>Eco-friendly packaging and ethical sourcing. Reducing environmental impact and promoting sustainability.</p>
-                    </div>
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="value-icon-wrapper"><i class="fas fa-heart"></i></div>
-                        <h3>Customer Satisfaction</h3>
-                        <p>We prioritize your health and happiness always. Excellent service and quality products are our promise.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Star Snacks Section (Services) -->
-        <section id="Services">
-            <h2>Our Star Snacks</h2>
-            <p class="subtitle">Carefully curated combinations for optimal nutrition and taste</p>
-            <div class="top-list-container">
-                <div class="food-card" data-aos="zoom-in">
-                    <img src="https://www.cookwithmanali.com/wp-content/uploads/2019/12/Mixed-Nuts-Chikki-500x500.jpg" alt="Nuts Chikki Combo">
-                    <h3>Nuts Chikki Combo</h3>
-                    <p>Nuts Chikki, Raagi Biscuit, Fresh Seasonal Fruits</p>
-                    <div class="card-extra-info"><span class="rating">⭐ 4.8 (120 reviews)</span></div>
-                    <div class="card-footer">
-                        <span class="nutritional-value">High Protein, Low Sugar</span>
-                        <button class="add-button">i</button>
-                    </div>
-                </div>
-                <div class="food-card highlight-card" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://img-global.cpcdn.com/recipes/edc47cf1f6688884/680x482cq70/mixed-nuts-and-seeds-chikki-recipe-main-photo.jpg" alt="Pumpkin Delight">
-                    <h3>Pumpkin Delight</h3>
-                    <p>Pumpkin Chikki, Badam Biscuit, Seasonal Fruits</p>
-                    <div class="card-extra-info"><span class="rating">⭐ 4.7 (95 reviews)</span></div>
-                    <div class="card-footer">
-                        <span class="nutritional-value">Rich in Fiber, Gluten-Free</span>
-                        <button class="add-button">i</button>
-                    </div>
-                </div>
-                <div class="food-card" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://vegehomecooking.com/wp-content/uploads/2022/01/PeanutChikkiFeaturedImage.jpg" alt="Peanut Power Pack">
-                    <h3>Peanut Power Pack</h3>
-                    <p>Peanut Chikki, Cashew Biscuit, Seasonal Fruits</p>
-                    <div class="card-extra-info"><span class="rating">⭐ 4.9 (150 reviews)</span></div>
-                    <div class="card-footer">
-                        <span class="nutritional-value">Energy Boosting, Vegan</span>
-                        <button class="add-button">i</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tips Section -->
-        <section id="tips" class="tips-section">
-            <h2>Nutrition Tips for Kids</h2>
-            <p class="subtitle">Healthy habits start young with these essential tips</p>
-            <div class="tips-grid">
-                <div class="tip-card" data-aos="fade-up">
-                    <h3><i class="fas fa-apple-alt"></i> Fruits & Vegetables</h3>
-                    <p>Increase fruits and vegetables for better growth. Our boxes include seasonal fruits for natural vitamins.</p>
-                </div>
-                <div class="tip-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="fas fa-ban"></i> Avoid Processed</h3>
-                    <p>Steer clear of foods with no nutritional value. Our snacks use whole, natural ingredients.</p>
-                </div>
-                <div class="tip-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3><i class="fas fa-brain"></i> Healthy Fats</h3>
-                    <p>Choose nuts and seeds for brain development. Our chikkis and biscuits are packed with good fats.</p>
-                </div>
-                <div class="tip-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3><i class="fas fa-candy-cane"></i> Reduce Sugar</h3>
-                    <p>Limit sugar to avoid hyperactivity. Our snacks use natural sweetness from fruits and minimal jaggery.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Packages Section -->
-        <section id="Packages">
-            <h2>Choose Your Perfect Plan</h2>
-            <p class="subtitle">Flexible options to fit your healthy lifestyle. Select a base plan, then customize your duration.</p>
-
-            <div class="main-plans-container">
-                <!-- Basic Plan Card -->
-                <div class="main-plan-card" data-aos="fade-up">
-                    <h3>Basic Plan</h3>
-                    <p class="plan-description">
-                        Great for starters, get essential healthy snacks.
-                    </p>
-                    <ul class="plan-key-features">
-                        <li><i class="fas fa-check-circle"></i> Curated weekly essentials</li>
-                        <li><i class="fas fa-check-circle"></i> Focus on core nutrients</li>
-                        <li><i class="fas fa-check-circle"></i> Perfect entry to healthy snacking</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
-                </div>
-
-                <!-- Pro Plan Card -->
-                <div class="main-plan-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Pro Plan</h3>
-                    <p class="plan-description">
-                        More variety and quantity for the dedicated snacker.
-                    </p>
-                    <ul class="plan-key-features">
-                        <li><i class="fas fa-check-circle"></i> Expanded snack selection</li>
-                        <li><i class="fas fa-check-circle"></i> Includes energy-boosting options</li>
-                        <li><i class="fas fa-check-circle"></i> Balanced for active lifestyles</li>
-                        <li><i class="fas fa-check-circle"></i> Surprise healthy treats</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
-                </div>
-
-                <!-- Ultra Pro Plan Card -->
-                <div class="main-plan-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Ultra Pro Plan</h3>
-                    <p class="plan-description">
-                        The ultimate healthy snacking experience with maximum benefits.
-                    </p>
-                    <ul class="plan-key-features">
-                        <li><i class="fas fa-check-circle"></i> Premium & gourmet snacks</li>
-                        <li><i class="fas fa-check-circle"></i> Includes organic & superfoods</li>
-                        <li><i class="fas fa-check-circle"></i> Personalized snack options</li>
-                        <li><i class="fas fa-check-circle"></i> Exclusive wellness perks</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quote Section -->
-        <div class="quote-block standalone-quote" data-aos="fade-up">
-            <p>"The greatest wealth is health with our healthy snacks. Start your day with a big healthy snack box for the required energy."</p>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer id="ContactUs">
-        <div class="footer-content">
-            <div class="footer-column about-column">
-                <h3>Healthy Bites</h3>
-                <p>Nourishing Your Body, One Snack at a Time with quality ingredients and sustainable practices.</p>
-                <div class="footer-social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-column links-column">
-                <h3>Quick Links</h3>
+        <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <!-- Logo -->
+                <!-- Logo -->
+                <a href="#home" class="logo-link" aria-label="Go to Home page">
+                    <img src="logo.png" class="logo1" alt="Healthy Bites Logo"> <!-- Adjusted path -->
+                </a>            <!-- Navigation Links -->
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#mission">About Us</a></li>
-                    <li><a href="#products">Our Snacks</a></li>
-                    <li><a href="#packages">Packages</a></li>
-                    <li><a href="#" onclick="showContactPopup(event)">Download App</a></li>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#AboutUs">About Us</a></li>
+                    <li><a href="#Services">Services</a></li>
+                    <li><a href="#Packages">Packages</a></li>
+                    <li><a href="#ContactUs">Contact Us</a></li>
+                    
                 </ul>
+                <!-- Download App Button -->
+                <a href="#" class="download-button" onclick="showContactPopup(event)">Download App</a>
+                <!-- Mobile Menu Toggle -->
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
-            <div class="footer-column contact-column">
-                <h3>Contact Us</h3>
-                <ul>
-                    <li><i class="fas fa-phone"></i><a href="tel:+919988776655">+91 9988776655</a></li>
-                    <li><i class="fas fa-envelope"></i><a href="mailto:contact@healthysnackbox.in">contact@healthysnackbox.in</a></li>
-                    <li><i class="fas fa-map-marker-alt"></i><span>Rushikonda, Visakhapatnam</span></li>
-                </ul>
+        </nav>
+
+        <!-- Floating Download Button -->
+        <a href="#" class="floating-download-button" onclick="showContactPopup(event)" aria-label="Download App">
+            <i class="fas fa-download"></i>
+        </a>
+
+        <!-- Header Section -->
+        <header id="home">
+            <!-- Decorative Items -->
+            <span class="deco-item item-1"><i class="fas fa-candy-cane"></i></span> <!-- For chikki -->
+            <span class="deco-item item-3">🍉</span> <!-- Honey pot for chikki -->
+            <span class="deco-item item-2">🍌</span> <!-- Banana for fruits -->
+            <span class="deco-item item-4">🍅</span> <!-- Pot of food for South Indian snacks -->
+            <span class="deco-item item-5">🍚</span> <!-- Rice for South Indian snacks -->
+            <span class="deco-item item-6">🥜</span> <!-- Peanuts for chikki -->
+
+            <!-- Hero Content -->
+            <div class="hero-content-wrapper">
+                <div class="hero-text">
+                    <h2>Mindful Snacking Made Easy</h2>
+                    <p><i>Discover a healthier you with every bite. Wholesome, flavorful, and crafted for your well-being. Snack smarter, live healthier.</i></p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn btn-primary">Explore Snacks</a>
+                        <a href="#packages" class="btn btn-secondary">View Packages</a>
+                    </div>
+                </div>
+                <!-- Hero Image -->
+                <div class="hero-image">
+                    <img src="snack box.webp" alt="Delicious Snack Box">
+                </div>
             </div>
-        </div>
-        <div class="copyright">
-            <p><i>© 2025 Healthy Bites. All rights reserved.</i></p>
-        </div>
-    </footer>
+        </header>
 
-    <!-- WhatsApp Chat Button -->
-    <a href="https://wa.me/919390555433" class="fixed-corner-image" target="_blank" rel="noopener noreferrer" role="button" tabindex="0" aria-label="Chat with us on WhatsApp">
-        <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 3rem; box-shadow: none; filter: none;"></i>
-    </a>
+        <!-- Main Content -->
+        <main>
+            <!-- Mission Section -->
+            <section id="AboutUs">
+                <div class="mission-container">
+                    <div class="mission-image" data-aos="fade-right">
+                        <img src="https://images6.alphacoders.com/804/804136.jpg" alt="Healthy Bites Mission - Community Eating">
+                    </div>
+                    <div class="mission-text" data-aos="fade-left">
+                        <h2>Our Mission</h2>
+                        <p class="subtitle">To Provide Healthy and Delicious Snacks for a Busy Lifestyle</p>
+                        <div class="quote-block">
+                            <p>"Bite into better health, one snack at a time. At Healthy Bites, we believe that healthy eating should be easy and convenient. That’s why we’re dedicated to providing a variety of healthy snack options that are perfect for on-the-go."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- External Scripts -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Swiper JS removed -->
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+            <!-- Values Section -->
+            <section id="values">
+                <div class="values-section-content">
+                    <div class="values-header">
+                        <div class="values-text-content">
+                            <h2>Our Values</h2>
+                            <p class="subtitle">We're committed to excellence in every aspect of our service</p>
+                            <p><i><b>We use whole, unprocessed ingredients to ensure our snacks are nutrient-rich and free from artificial additives. Each snack provides a perfect balance of macronutrients and micronutrients to fuel your day.</b></i></p>
+                        </div>
+                        <div class="values-decorative-image" data-aos="fade-left" data-aos-delay="100">
+                            <img src="https://wallpapercave.com/wp/wp6557500.jpg" alt="Fresh Ingredients">
+                        </div>
+                    </div>
+                    <div class="values-container">
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="value-icon-wrapper"><i class="fas fa-award"></i></div>
+                            <h3>Quality</h3>
+                            <p>Only the finest natural ingredients make the cut. Highest-quality ingredients and sustainable practices.</p>
+                        </div>
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="value-icon-wrapper"><i class="fas fa-clock"></i></div>
+                            <h3>Convenience</h3>
+                            <p>Ready-to-eat snacks to fit your busy schedule. Easy and convenient for your on-the-go lifestyle.</p>
+                        </div>
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="value-icon-wrapper"><i class="fas fa-leaf"></i></div>
+                            <h3>Sustainability</h3>
+                            <p>Eco-friendly packaging and ethical sourcing. Reducing environmental impact and promoting sustainability.</p>
+                        </div>
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="value-icon-wrapper"><i class="fas fa-heart"></i></div>
+                            <h3>Customer Satisfaction</h3>
+                            <p>We prioritize your health and happiness always. Excellent service and quality products are our promise.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Star Snacks Section (Services) -->
+            <section id="Services">
+                <h2>Our Star Snacks</h2>
+                <p class="subtitle">Carefully curated combinations for optimal nutrition and taste</p>
+                <div class="top-list-container">
+                    <div class="food-card" data-aos="zoom-in">
+                        <img src="https://www.cookwithmanali.com/wp-content/uploads/2019/12/Mixed-Nuts-Chikki-500x500.jpg" alt="Nuts Chikki Combo">
+                        <h3>Nuts Chikki Combo</h3>
+                        <p>Nuts Chikki, Raagi Biscuit, Fresh Seasonal Fruits</p>
+                        <div class="card-extra-info"><span class="rating">⭐ 4.8 (120 reviews)</span></div>
+                        <div class="card-footer">
+                            <span class="nutritional-value">High Protein, Low Sugar</span>
+                            <button class="add-button">i</button>
+                        </div>
+                    </div>
+                    <div class="food-card highlight-card" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://img-global.cpcdn.com/recipes/edc47cf1f6688884/680x482cq70/mixed-nuts-and-seeds-chikki-recipe-main-photo.jpg" alt="Pumpkin Delight">
+                        <h3>Pumpkin Delight</h3>
+                        <p>Pumpkin Chikki, Badam Biscuit, Seasonal Fruits</p>
+                        <div class="card-extra-info"><span class="rating">⭐ 4.7 (95 reviews)</span></div>
+                        <div class="card-footer">
+                            <span class="nutritional-value">Rich in Fiber, Gluten-Free</span>
+                            <button class="add-button">i</button>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="https://vegehomecooking.com/wp-content/uploads/2022/01/PeanutChikkiFeaturedImage.jpg" alt="Peanut Power Pack">
+                        <h3>Peanut Power Pack</h3>
+                        <p>Peanut Chikki, Cashew Biscuit, Seasonal Fruits</p>
+                        <div class="card-extra-info"><span class="rating">⭐ 4.9 (150 reviews)</span></div>
+                        <div class="card-footer">
+                            <span class="nutritional-value">Energy Boosting, Vegan</span>
+                            <button class="add-button">i</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tips Section -->
+            <section id="tips" class="tips-section">
+                <h2>Nutrition Tips for Kids</h2>
+                <p class="subtitle">Healthy habits start young with these essential tips</p>
+                <div class="tips-grid">
+                    <div class="tip-card" data-aos="fade-up">
+                        <h3><i class="fas fa-apple-alt"></i> Fruits & Vegetables</h3>
+                        <p>Increase fruits and vegetables for better growth. Our boxes include seasonal fruits for natural vitamins.</p>
+                    </div>
+                    <div class="tip-card" data-aos="fade-up" data-aos-delay="100">
+                        <h3><i class="fas fa-ban"></i> Avoid Processed</h3>
+                        <p>Steer clear of foods with no nutritional value. Our snacks use whole, natural ingredients.</p>
+                    </div>
+                    <div class="tip-card" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-brain"></i> Healthy Fats</h3>
+                        <p>Choose nuts and seeds for brain development. Our chikkis and biscuits are packed with good fats.</p>
+                    </div>
+                    <div class="tip-card" data-aos="fade-up" data-aos-delay="300">
+                        <h3><i class="fas fa-candy-cane"></i> Reduce Sugar</h3>
+                        <p>Limit sugar to avoid hyperactivity. Our snacks use natural sweetness from fruits and minimal jaggery.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Packages Section -->
+            <section id="Packages">
+                <h2>Choose Your Perfect Plan</h2>
+                <p class="subtitle">Flexible options to fit your healthy lifestyle. Select a base plan, then customize your duration.</p>
+
+                <div class="main-plans-container">
+                    <!-- Basic Plan Card -->
+                    <div class="main-plan-card" data-aos="fade-up">
+                        <h3>Basic Plan</h3>
+                        <p class="plan-description">
+                            Great for starters, get essential healthy snacks.
+                        </p>
+                        <ul class="plan-key-features">
+                            <li><i class="fas fa-check-circle"></i> Curated weekly essentials</li>
+                            <li><i class="fas fa-check-circle"></i> Focus on core nutrients</li>
+                            <li><i class="fas fa-check-circle"></i> Perfect entry to healthy snacking</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
+                    </div>
+
+                    <!-- Pro Plan Card -->
+                    <div class="main-plan-card" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Pro Plan</h3>
+                        <p class="plan-description">
+                            More variety and quantity for the dedicated snacker.
+                        </p>
+                        <ul class="plan-key-features">
+                            <li><i class="fas fa-check-circle"></i> Expanded snack selection</li>
+                            <li><i class="fas fa-check-circle"></i> Includes energy-boosting options</li>
+                            <li><i class="fas fa-check-circle"></i> Balanced for active lifestyles</li>
+                            <li><i class="fas fa-check-circle"></i> Surprise healthy treats</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
+                    </div>
+
+                    <!-- Ultra Pro Plan Card -->
+                    <div class="main-plan-card" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Ultra Pro Plan</h3>
+                        <p class="plan-description">
+                            The ultimate healthy snacking experience with maximum benefits.
+                        </p>
+                        <ul class="plan-key-features">
+                            <li><i class="fas fa-check-circle"></i> Premium & gourmet snacks</li>
+                            <li><i class="fas fa-check-circle"></i> Includes organic & superfoods</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized snack options</li>
+                            <li><i class="fas fa-check-circle"></i> Exclusive wellness perks</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="showContactPopup(event)">Customize & View Pricing</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quote Section -->
+            <div class="quote-block standalone-quote" data-aos="fade-up">
+                <p>"The greatest wealth is health with our healthy snacks. Start your day with a big healthy snack box for the required energy."</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer id="ContactUs">
+            <div class="footer-content">
+                <div class="footer-column about-column">
+                    <h3>Healthy Bites</h3>
+                    <p>Nourishing Your Body, One Snack at a Time with quality ingredients and sustainable practices.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column links-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#mission">About Us</a></li>
+                        <li><a href="#products">Our Snacks</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#" onclick="showContactPopup(event)">Download App</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column contact-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i><a href="tel:+919988776655">+91 9988776655</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:contact@healthysnackbox.in">contact@healthysnackbox.in</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Rushikonda, Visakhapatnam</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p><i>© 2025 Healthy Bites. All rights reserved.</i></p>
+            </div>
+        </footer>
+
+        <!-- WhatsApp Chat Button -->
+        <a href="https://wa.me/919390555433" class="fixed-corner-image" target="_blank" rel="noopener noreferrer" role="button" tabindex="0" aria-label="Chat with us on WhatsApp">
+            <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 3rem; box-shadow: none; filter: none;"></i>
+        </a>
+
+        <!-- External Scripts -->
+        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Swiper JS removed -->
+        <!-- Custom JavaScript -->
+        <script src="script.js"></script>
+    </div> 
 </body>
 </html>

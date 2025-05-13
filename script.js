@@ -140,12 +140,37 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("Scroll highlight: Target sections or navigation links not found.");
     }
 
-    // Mobile Nav Toggle
+    // Mobile Nav Toggle - Fixed Version
     const menuToggle = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('.main-nav ul');
+
     if (menuToggle && navUl) {
-        menuToggle.addEventListener('click', () => navUl.classList.toggle('show-mobile-menu'));
-    } else { console.warn("Mobile nav: Toggle or UL not found."); }
+        // Toggle menu on/off when clicking the menu icon
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            navUl.classList.toggle('show-mobile-menu');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('.main-nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('show-mobile-menu');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.main-nav') && navUl.classList.contains('show-mobile-menu')) {
+                navUl.classList.remove('show-mobile-menu');
+                menuToggle.classList.remove('active');
+            }
+        });
+    } else {
+        console.error("Menu toggle or navigation list not found");
+    }
 
     // Star Snack card info buttons
     const foodCards = [
