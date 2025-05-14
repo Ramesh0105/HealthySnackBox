@@ -100,7 +100,18 @@ a { text-decoration: none; color: var(--accent-color); }
     text-align: center;
     border-bottom: 1px solid #eee; /* Add a subtle divider between items */
 }
-.main-nav ul li a { color: var(--text-light); font-weight: 500; font-size: 0.9rem; padding: 5px 0; position: relative; transition: var(--transition); }
+.main-nav ul li a { 
+    color: var(--text-light); 
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    padding: 8px 20px;  /* Increased horizontal padding */
+    position: relative; 
+    transition: var(--transition); 
+    white-space: nowrap;  /* Prevent text wrapping */
+    display: inline-block; 
+    min-width: 80px;  /* Minimum width for consistency */
+    text-align: center;  /* Center text */
+}
 .main-nav ul li a::after { 
     content: ''; 
     position: absolute; 
@@ -114,6 +125,14 @@ a { text-decoration: none; color: var(--accent-color); }
 .main-nav ul li a:hover, .main-nav ul li a.active { color: var(--heading-color); }
 .main-nav ul li a:hover::after, .main-nav ul li a.active::after { 
     width: 100%;
+}
+.main-nav ul li a.nav-button {
+    padding: 8px 16px;
+    white-space: nowrap;
+    display: inline-block;
+    width: auto;
+    min-width: 100px;
+    text-align: center;
 }
 /* .main-nav ul li a[href="#footer"] {
     font-weight: bold;
@@ -402,23 +421,20 @@ footer { background: #333; color: #ccc; padding: 50px 20px 20px; margin-top: 40p
 
 @media (min-width: 769px) {
     .main-nav ul {
-        display: flex !important; /* Override 'display: none' for desktop view */
-        flex-direction: row; /* Ensure horizontal layout */
-        position: static; /* Remove absolute positioning */
-        box-shadow: none; /* Remove shadow */
-        padding-bottom: 0; /* Remove padding */
-        width: auto; /* Reset width */
-        background-color: transparent !important; /* Remove background color */
-        align-items: center; /* Vertically align the menu items */
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        box-shadow: none;
+        padding-bottom: 0;
+        width: auto;
+        background-color: transparent !important;
+        align-items: center;
+        gap: 5px;  /* Add consistent gap between items */
     }
 
     .main-nav ul li {
-        list-style: none; /* Remove bullet points */
-        margin-right: 20px; /* Adjust spacing between links */
-    }
-
-    .main-nav ul li a {
-        color: var(--text-color); /* Change color to black */
+        list-style: none;
+        margin-right: 0;  /* Remove margin and use gap instead */
     }
 }
 
