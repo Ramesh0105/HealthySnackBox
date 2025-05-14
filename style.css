@@ -81,11 +81,24 @@ a { text-decoration: none; color: var(--accent-color); }
     transform: scale(1.1); /* Slight zoom on hover */
 }
 .main-nav ul { 
-    list-style: none; 
-    display: flex; 
-    gap: 30px; 
-    align-items: center; /* Ensure vertical centering */
-    height: 100%; /* Match the height of the navigation bar */
+    display: none; 
+    flex-direction: column;
+    background-color: var(--bg-color) !important; /* A slightly darker gray background for the entire dropdown menu */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Ensure it appears above content */
+    padding-bottom: 10px; /* Add padding to the bottom */
+}
+.main-nav ul.show-mobile-menu {
+    display: flex; /* Show the menu when toggled */
+}
+.main-nav ul li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #eee; /* Add a subtle divider between items */
 }
 .main-nav ul li a { color: var(--text-light); font-weight: 500; font-size: 0.9rem; padding: 5px 0; position: relative; transition: var(--transition); }
 .main-nav ul li a::after { 
@@ -317,32 +330,34 @@ footer { background: #333; color: #ccc; padding: 50px 20px 20px; margin-top: 40p
     .logo1 { max-height: 50px; margin-right: auto; } /* Push toggle to the right */
     .main-nav ul {
         display: none; 
-        flex-direction: column; 
-        background-color: white !important; /* White background for the entire dropdown menu */
+        flex-direction: column;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
-        position: absolute; 
-        top: var(--nav-height); 
-        left: 0; 
-        width: 100%; 
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
         z-index: 999; /* Ensure it appears above content */
-        padding: 0; /* Remove extra padding */
+        padding-bottom: 10px; /* Add padding to the bottom */
     }
     .main-nav ul.show-mobile-menu {
-        display: flex; /* Show the menu when toggled */
+        display: flex;
+        background-color: var(--bg-color) !important; /* Add background here */
+    }
+    .main-nav ul.show-mobile-menu li a {
+        color: var(--text-color); /* Ensure text color is visible */
     }
     .main-nav ul li {
-        width: 100%; 
-        text-align: center; 
-        background-color: white; /* Ensure white background for each list item */
+        width: 100%;
+        text-align: center;
         border-bottom: 1px solid #eee; /* Add a subtle divider between items */
     }
     .main-nav ul li:last-child {
         border-bottom: none; /* Remove border for the last item */
     }
     .main-nav ul li a {
-        padding: 15px 20px; 
-        display: block; 
-        width: 100%; 
+        padding: 12px 20px;
+        display: block;
+        width: 100%;
         color: var(--text-color); /* Ensure text color is visible */
         transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -385,6 +400,27 @@ footer { background: #333; color: #ccc; padding: 50px 20px 20px; margin-top: 40p
     .footer-social-links { justify-content: center; }
 }
 
+@media (min-width: 769px) {
+    .main-nav ul {
+        display: flex !important; /* Override 'display: none' for desktop view */
+        flex-direction: row; /* Ensure horizontal layout */
+        position: static; /* Remove absolute positioning */
+        box-shadow: none; /* Remove shadow */
+        padding-bottom: 0; /* Remove padding */
+        width: auto; /* Reset width */
+        background-color: transparent !important; /* Remove background color */
+        align-items: center; /* Vertically align the menu items */
+    }
+
+    .main-nav ul li {
+        list-style: none; /* Remove bullet points */
+        margin-right: 20px; /* Adjust spacing between links */
+    }
+
+    .main-nav ul li a {
+        color: var(--text-color); /* Change color to black */
+    }
+}
 
 @media (max-width: 480px) {
     .hero-buttons { flex-direction: column; gap: 10px; align-items: center; }

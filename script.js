@@ -168,6 +168,40 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.addEventListener('click', () => navUl.classList.toggle('show-mobile-menu'));
     } else { console.warn("Mobile nav: Toggle or UL not found."); }
 
+    // Mobile Nav Link Activation
+    navLiAnchors.forEach(anchor => {
+        anchor.addEventListener('click', (event) => {
+            // Prevent default anchor behavior
+            event.preventDefault();
+
+            // Get the target section id from the href
+            const targetId = anchor.getAttribute('href').substring(1);
+
+            // Find the target section and scroll to it
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                const navHeight = document.querySelector('.main-nav')?.offsetHeight || 0;
+                const scrollToPosition = targetSection.offsetTop - navHeight;
+
+                window.scrollTo({
+                    top: scrollToPosition,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Remove active class from all anchors
+            navLiAnchors.forEach(a => a.classList.remove('active'));
+
+            // Add active class to the clicked anchor
+            anchor.classList.add('active');
+
+            // Close the mobile menu after clicking (optional)
+            if (navUl.classList.contains('show-mobile-menu')) {
+                navUl.classList.remove('show-mobile-menu');
+            }
+        });
+    });
+
     // Star Snack card info buttons
     const foodCards = [
         {
