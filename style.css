@@ -69,13 +69,7 @@ img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; color: var(--accent-color); }
 
 /* --- Navigation --- */
-.main-nav { 
-    background-color: #ffffff; /* Changed from transparent to solid white */
-    backdrop-filter: none; /* Removed blur effect */
-    box-shadow: var(--shadow-light);
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-}
+.main-nav { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); background-color: var(--nav-bg); backdrop-filter: blur(10px); box-shadow: var(--shadow-light); z-index: 1000; transition: background-color 0.3s ease; }
 .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 100%; display: flex; justify-content: space-between; align-items: flex-start; padding-top: 10px; }
 .logo1 {
     max-height: 60px; /* Keep the size */
@@ -314,22 +308,54 @@ footer { background: #333; color: #ccc; padding: 50px 20px 20px; margin-top: 40p
 
 @media (max-width: 768px) {
     :root { --nav-height: 60px; }
+    .main-nav {
+        background-color: white !important; /* Solid white background for the entire nav */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+        z-index: 1000; /* Ensure it appears above other elements */
+    }
     .nav-container { justify-content: space-between; } /* Keep space for logo and toggle */
     .logo1 { max-height: 50px; margin-right: auto; } /* Push toggle to the right */
-    .main-nav ul { display: none; flex-direction: column; background-color: var(--nav-bg); position: absolute; top: var(--nav-height); left: 0; width: 100%; box-shadow: var(--shadow-light); z-index: 999; /* Below main nav but above content */ padding: 10px 0; border-top: 1px solid rgba(0, 0, 0, 0.05); border-radius: 0 0 12px 12px; }
-    .main-nav ul.show-mobile-menu { display: flex; animation: slideDown 0.3s ease forwards; }
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .main-nav ul {
+        display: none; 
+        flex-direction: column; 
+        background-color: white !important; /* White background for the entire dropdown menu */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+        position: absolute; 
+        top: var(--nav-height); 
+        left: 0; 
+        width: 100%; 
+        z-index: 999; /* Ensure it appears above content */
+        padding: 0; /* Remove extra padding */
     }
-    .menu-toggle { display: flex; align-items: center; justify-content: center; color: var(--heading-color); font-size: 1.5rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; background-color: rgba(245, 166, 35, 0.1); }
-    .menu-toggle.active { background-color: rgba(245, 166, 35, 0.2); color: var(--accent-color); }
+    .main-nav ul.show-mobile-menu {
+        display: flex; /* Show the menu when toggled */
+    }
+    .main-nav ul li {
+        width: 100%; 
+        text-align: center; 
+        background-color: white; /* Ensure white background for each list item */
+        border-bottom: 1px solid #eee; /* Add a subtle divider between items */
+    }
+    .main-nav ul li:last-child {
+        border-bottom: none; /* Remove border for the last item */
+    }
+    .main-nav ul li a {
+        padding: 15px 20px; 
+        display: block; 
+        width: 100%; 
+        color: var(--text-color); /* Ensure text color is visible */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .main-nav ul li a:hover {
+        background-color: var(--accent-color); /* Highlight on hover */
+        color: white; /* Change text color on hover */
+    }
+    .menu-toggle {
+        display: block; 
+        color: var(--heading-color); 
+        font-size: 1.5rem; 
+        cursor: pointer;
+    }
     .download-button { display: none; } /* Hide nav download button on mobile */
     .floating-download-button { display: flex; } /* Show floating download button */
 
@@ -359,11 +385,6 @@ footer { background: #333; color: #ccc; padding: 50px 20px 20px; margin-top: 40p
     .footer-social-links { justify-content: center; }
 }
 
-@media (max-width: 768px) {
-    .main-nav {
-        background-color: #ffffff; /* Ensure solid background for mobile view */
-    }
-}
 
 @media (max-width: 480px) {
     .hero-buttons { flex-direction: column; gap: 10px; align-items: center; }
@@ -425,99 +446,4 @@ footer { background: #333; color: #ccc; padding: 50px 20px 20px; margin-top: 40p
     padding: 10px 25px !important;
     font-family: var(--font-body) !important;
     font-weight: 600 !important;
-}
-
-/* Updated Mobile Menu CSS - Fixed Version */
-@media (max-width: 768px) {
-    /* Fixed navigation background */
-    .main-nav {
-        background-color: rgba(255, 255, 255, 0.98); /* More opaque background */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Important: Make sure the menu-toggle is visible and styled properly */
-    .menu-toggle {
-        display: flex !important; /* Force display with !important */
-        align-items: center;
-        justify-content: center;
-        color: var(--heading-color);
-        font-size: 1.5rem;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        background-color: rgba(245, 166, 35, 0.1);
-        z-index: 1001; /* Ensure it's above other elements */
-    }
-    
-    .menu-toggle:hover,
-    .menu-toggle.active {
-        background-color: rgba(245, 166, 35, 0.2);
-        color: var(--accent-color);
-    }
-    
-    /* Enhanced mobile menu - CRITICAL FIX */
-    .main-nav ul {
-        display: none !important; /* Force hide with !important */
-        flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.98); /* Match the nav background */
-        position: absolute;
-        top: var(--nav-height);
-        left: 0;
-        width: 100%;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        padding: 10px 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-        border-radius: 0 0 12px 12px;
-    }
-    
-    /* CRITICAL CLASS - This must work to show the menu */
-    .main-nav ul.show-mobile-menu {
-        display: flex !important; /* Force display with !important */
-        animation: slideDown 0.3s ease forwards;
-    }
-    
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .main-nav ul li {
-        width: 100%;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .main-nav ul li a {
-        padding: 14px 20px;
-        display: block;
-        width: 100%;
-        color: var(--heading-color);
-        font-weight: 500;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-    }
-    
-    .main-nav ul li:last-child a {
-        border-bottom: none;
-    }
-    
-    .main-nav ul li a:hover, 
-    .main-nav ul li a.active {
-        background-color: rgba(245, 166, 35, 0.1);
-        color: var(--accent-color);
-    }
-    
-    .main-nav ul li a::after {
-        display: none; /* Remove the underline animation on mobile */
-    }
 }

@@ -1,5 +1,5 @@
 // --- SweetAlert2: Show App Download QR Codes with Fixed Footer Redirect ---
-function showContactPopup(event, redirectToFooter = false) {
+function showContactPopup(event) {
     if (event) event.preventDefault();
 
     const androidAppLink = "https://play.google.com/store/apps/details?id=com.example.healthybites"; // Replace with your actual link
@@ -8,7 +8,8 @@ function showContactPopup(event, redirectToFooter = false) {
     const androidQRUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(androidAppLink)}`;
     const iosQRUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(iosAppLink)}`;
 
-    Swal.fire({
+    // Create a variable to store the popup instance
+    const popup = Swal.fire({
         title: 'Get Our App',
         html: `
             <p style="margin-bottom: 20px; color: var(--text-light); font-size: 0.95rem;">Scan below to download our mobile app.</p>
@@ -23,39 +24,47 @@ function showContactPopup(event, redirectToFooter = false) {
                 </div>
             </div>
             <p style="margin-top: 20px;">
-                <a href="#ContactUs" id="contactLinkInPopup" style="color: var(--accent-color);">
+                <button id="contactLinkInPopup" style="color: var(--accent-color); background: none; border: none; cursor: pointer; text-decoration: underline; font-size: 1rem; font-family: inherit; padding: 0;">
                     View Contact Details
-                </a>
+                </button>
             </p>
         `,
         confirmButtonText: 'Close',
         confirmButtonColor: '#f5a623', // Accent color
         width: 'auto',
         padding: '1.5em',
-        didClose: () => {
-            // Check if "redirectToFooter" parameter is true or if user clicked on the "View Contact Details" link
-            if (redirectToFooter || document.getElementById('contactLinkInPopup').hasAttribute('clicked')) {
-                setTimeout(() => {
+        didOpen: () => {
+            console.log("Popup opened");
+            // Add click handler to the contact button
+            document.getElementById('contactLinkInPopup').onclick = function() {
+                console.log("Contact link clicked");
+                // Close the popup
+                Swal.close();
+                
+                // Define a function to scroll to the footer
+                function scrollToFooter() {
                     const contactUsSection = document.getElementById('ContactUs');
+                    console.log("Scrolling to section:", contactUsSection);
+                    
                     if (contactUsSection) {
-                        contactUsSection.scrollIntoView({ behavior: 'smooth' });
+                        // Get nav height for offset
+                        const navHeight = document.querySelector('.main-nav')?.offsetHeight || 0;
+                        const scrollToPosition = contactUsSection.offsetTop - navHeight;
+                        
+                        console.log(`Scrolling to position: ${scrollToPosition}`);
+                        
+                        window.scrollTo({
+                            top: scrollToPosition,
+                            behavior: 'smooth'
+                        });
                     }
-                }, 100);
-            }
+                }
+                
+                // Wait a bit for the popup to close, then scroll
+                setTimeout(scrollToFooter, 200);
+            };
         }
     });
-
-    // Add event listener to the "View Contact Details" link
-    setTimeout(() => {
-        const contactLink = document.getElementById('contactLinkInPopup');
-        if (contactLink) {
-            contactLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                this.setAttribute('clicked', 'true');
-                Swal.close();
-            });
-        }
-    }, 100);
 }
 
 // --- SweetAlert2: Show Nutrient Info Popup (Fixed for HTML content) ---
@@ -66,6 +75,18 @@ function showNutrientInfo(title, description) {
         confirmButtonText: 'Close',
         confirmButtonColor: '#f5a623'
     });
+}
+
+// --- Direct function to scroll to footer ---
+function scrollToFooter() {
+    const contactUsSection = document.getElementById('ContactUs');
+    if (contactUsSection) {
+        const navHeight = document.querySelector('.main-nav')?.offsetHeight || 0;
+        window.scrollTo({
+            top: contactUsSection.offsetTop - navHeight,
+            behavior: 'smooth'
+        });
+    }
 }
 
 // --- DOM Ready ---
@@ -119,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Fallback if no section was determined by the loop (e.g., in a gap)
                 // and we are not at the very top (which is handled by Priority 2)
                 if (!currentSectionId && document.getElementById('home')) {
-                     currentSectionId = 'home'; // Default to home if in an unknown state
+                   currentSectionId = 'home'; // Default to home if in an unknown state
                 }
             }
 
@@ -140,93 +161,74 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("Scroll highlight: Target sections or navigation links not found.");
     }
 
-    // Mobile Nav Toggle - Fixed Version
+    // Mobile Nav Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('.main-nav ul');
-
     if (menuToggle && navUl) {
-        // Toggle menu on/off when clicking the menu icon
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent event bubbling
-            navUl.classList.toggle('show-mobile-menu');
-            menuToggle.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a nav link
-        const navLinks = document.querySelectorAll('.main-nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navUl.classList.remove('show-mobile-menu');
-                menuToggle.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.main-nav') && navUl.classList.contains('show-mobile-menu')) {
-                navUl.classList.remove('show-mobile-menu');
-                menuToggle.classList.remove('active');
-            }
-        });
-    } else {
-        console.error("Menu toggle or navigation list not found");
-    }
+        menuToggle.addEventListener('click', () => navUl.classList.toggle('show-mobile-menu'));
+    } else { console.warn("Mobile nav: Toggle or UL not found."); }
 
     // Star Snack card info buttons
     const foodCards = [
         {
-          buttonSelector: '.food-card:nth-child(1) .add-button',
-          title : 'Nuts Chikki Combo',
-          description: `
-            <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
-              <li><strong>Nuts Chikki</strong> – Rich in protein and healthy fats</li>
-              <li><strong>Ragi Biscuits</strong> – Packed with fiber and minerals</li>
-              <li><strong>Seasonal Fruits</strong> – Full of vitamins and antioxidants</li>
-            </ul>
-            <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
-            Protein, fiber, vitamins</p>
-          `
+            buttonSelector: '.food-card:nth-child(1) .add-button',
+            title : 'Nuts Chikki Combo',
+            description: `
+                <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
+                    <li><strong>Nuts Chikki</strong> – Rich in protein and healthy fats</li>
+                    <li><strong>Ragi Biscuits</strong> – Packed with fiber and minerals</li>
+                    <li><strong>Seasonal Fruits</strong> – Full of vitamins and antioxidants</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
+                Protein, fiber, vitamins</p>
+            `
         },
         {
-          buttonSelector: '.food-card:nth-child(2) .add-button',
-          title: 'Pumpkin Chikki Combo',
-          description: `
-            <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
-              <li><strong>Pumpkin Chikki</strong> – Packed with antioxidants and healthy fats</li>
-              <li><strong>Badam Biscuits</strong> – Nut-rich and heart-healthy</li>
-              <li><strong>Seasonal Fruits</strong> – Natural source of vitamins</li>
-            </ul>
-            <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
-            Antioxidants, healthy fats</p>
-          `
+            buttonSelector: '.food-card:nth-child(2) .add-button',
+            title: 'Pumpkin Chikki Combo',
+            description: `
+                <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
+                    <li><strong>Pumpkin Chikki</strong> – Packed with antioxidants and healthy fats</li>
+                    <li><strong>Badam Biscuits</strong> – Nut-rich and heart-healthy</li>
+                    <li><strong>Seasonal Fruits</strong> – Natural source of vitamins</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
+                Antioxidants, healthy fats</p>
+            `
         },
         {
-          buttonSelector: '.food-card:nth-child(3) .add-button',
-          title: 'Peanut Chikki Combo',
-          description: `
-            <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
-              <li><strong>Peanut Chikki</strong> – Great source of energy and good fats</li>
-              <li><strong>Cashew Biscuits</strong> – Rich in healthy fats and nutrients</li>
-              <li><strong>Seasonal Fruits</strong> – Full of essential vitamins and fiber</li>
-            </ul>
-            <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
-            Energy, good fats, nutrients</p>
-          `
+            buttonSelector: '.food-card:nth-child(3) .add-button',
+            title: 'Peanut Chikki Combo',
+            description: `
+                <ul style="padding-left: 1.2rem; line-height: 1.6; margin: 0;">
+                    <li><strong>Peanut Chikki</strong> – Great source of energy and good fats</li>
+                    <li><strong>Cashew Biscuits</strong> – Rich in healthy fats and nutrients</li>
+                    <li><strong>Seasonal Fruits</strong> – Full of essential vitamins and fiber</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Nutritional Highlights:</strong><br>
+                Energy, good fats, nutrients</p>
+            `
         }
     ];
-      
+
     foodCards.forEach(card => {
         const button = document.querySelector(card.buttonSelector);
         if (button) { button.addEventListener('click', () => showNutrientInfo(card.title, card.description)); }
         else { console.warn(`Food card button not found: ${card.buttonSelector}`);}
     });
 
-    // Update existing onclick attributes for contact popups to include redirection
-    document.querySelectorAll('[onclick*="showContactPopup"]').forEach(element => {
-        const originalOnclick = element.getAttribute('onclick');
-        if (originalOnclick && originalOnclick.includes('showContactPopup') && !originalOnclick.includes('true')) {
-            element.setAttribute('onclick', originalOnclick.replace('showContactPopup(event)', 'showContactPopup(event, true)'));
-        }
+    // Revert onclick attributes in HTML
+    document.querySelectorAll('.download-button, .floating-download-button').forEach(button => {
+        button.setAttribute('onclick', 'showContactPopup(event)');
+    });
+
+    // Also add direct handler to any popup contact links that might be present in the HTML
+    document.querySelectorAll('[id="contactLinkInPopup"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            Swal.close();
+            setTimeout(scrollToFooter, 200);
+        });
     });
 
     console.log("✅ All DOMContentLoaded scripts executed.");
